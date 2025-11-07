@@ -1,9 +1,9 @@
 // Configuration for different clients
 const CLIENT_CONFIG = {
   kagge: {
-    logoUrl: 'https://your-domain.vercel.app/logo/kagge-logo.png',
-    logoAlt: 'Kagge forlag logo',
-    logoWidth: 150,
+    logoUrl: 'https://epostsignatur.vercel.app/logo/kagge-logo.png',
+    logoAlt: 'Logo for Kagge forlag med spiral og navnetrekk',
+    logoWidth: 200,
   },
   // Add more clients here as needed
 };
