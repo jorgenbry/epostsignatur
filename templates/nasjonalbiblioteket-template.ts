@@ -20,7 +20,7 @@ export const nasjonalbiblioteketTemplate = `<!DOCTYPE html>
         {{DEPARTMENT_ROW}}
         <!-- Row 2: Logo -->
         <tr>
-            <td style="padding: 0 0 12px 0; border: none;">
+            <td style="padding: 0 12px 12px 24px; border: none;">
                 <img src="{{LOGO_URL}}" 
                      alt="{{LOGO_ALT}}" 
                      width="{{LOGO_WIDTH}}" 
