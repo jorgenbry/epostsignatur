@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import {
   ClientKey,
   getClientConfig,
@@ -97,14 +97,17 @@ export function SignatureGenerator({
   const isCopyDisabled =
     !name || !position || !email || !phone || (config.showDepartment && !department);
 
-  const containerStyle = {
+  const flexDirection: CSSProperties['flexDirection'] =
+    layout === 'desktop' ? 'row' : 'column';
+
+  const containerStyle: CSSProperties = {
     display: 'flex',
-    flexDirection: layout === 'desktop' ? 'row' : 'column',
+    flexDirection,
     minHeight: '100vh',
     width: '100%',
     fontFamily: 'system-ui, -apple-system, sans-serif',
     backgroundColor: '#f5f5f5',
-    overflowX: 'hidden' as const,
+    overflowX: 'hidden',
   };
 
   return (
