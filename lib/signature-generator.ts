@@ -30,6 +30,12 @@ const CLIENT_TEMPLATES = {
   // Add more client templates here as needed
 } as const;
 
+export type ClientKey = keyof typeof CLIENT_CONFIG;
+
+export function getClientConfig(client: ClientKey) {
+  return CLIENT_CONFIG[client];
+}
+
 type SignatureData = {
   name: string;
   position: string;
@@ -59,7 +65,7 @@ function getTemplate(client: keyof typeof CLIENT_CONFIG = 'kagge'): string {
 // Replace template variables with actual data
 export function getSignatureHTML(
   data: SignatureData,
-  client: keyof typeof CLIENT_CONFIG = 'kagge'
+  client: ClientKey = 'kagge'
 ): string {
   const config = CLIENT_CONFIG[client];
   const template = getTemplate(client);
