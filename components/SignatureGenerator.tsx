@@ -80,7 +80,18 @@ export function SignatureGenerator({
 
   return (
     <>
-      <div className="signature-generator">
+      <div
+        className="signature-generator"
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          minHeight: '100vh',
+          width: '100%',
+          fontFamily: 'system-ui, -apple-system, sans-serif',
+          backgroundColor: '#f5f5f5',
+          overflowX: 'hidden',
+        }}
+      >
         <div className="signature-input-panel">
         <h1
           style={{
@@ -292,30 +303,35 @@ export function SignatureGenerator({
       <style jsx>{`
         .signature-generator {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
           min-height: 100vh;
+          width: 100%;
           font-family: system-ui, -apple-system, sans-serif;
           background-color: #f5f5f5;
+          overflow-x: hidden;
         }
 
         .signature-input-panel {
           width: 100%;
+          max-width: 400px;
           background-color: #ffffff;
-          padding: 24px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          padding: 32px;
+          box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
           display: flex;
           flex-direction: column;
           gap: 24px;
+          box-sizing: border-box;
         }
 
         .signature-preview-panel {
           flex: 1;
-          padding: 24px;
+          padding: 32px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: flex-start;
-          overflow: auto;
+          overflow-y: auto;
+          box-sizing: border-box;
         }
 
         .signature-preview-card {
@@ -325,21 +341,29 @@ export function SignatureGenerator({
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
           width: 100%;
           max-width: 600px;
+          box-sizing: border-box;
         }
 
-        @media (min-width: 900px) {
+        .signature-input-panel input,
+        .signature-input-panel select {
+          width: 100%;
+          max-width: 100%;
+        }
+
+        @media (max-width: 899px) {
           .signature-generator {
-            flex-direction: row;
+            flex-direction: column;
           }
 
           .signature-input-panel {
-            max-width: 400px;
-            padding: 32px;
-            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
           }
 
           .signature-preview-panel {
-            padding: 32px;
+            width: 100%;
+            padding: 24px;
           }
         }
       `}</style>
