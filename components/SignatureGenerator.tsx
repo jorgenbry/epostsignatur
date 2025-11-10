@@ -34,11 +34,30 @@ export function SignatureGenerator({
   const [phone, setPhone] = useState('');
   const [department, setDepartment] = useState('');
   const [previewHTML, setPreviewHTML] = useState('');
+  const [layout, setLayout] = useState<'mobile' | 'desktop'>(() =>
+    typeof window !== 'undefined' && window.innerWidth >= 900 ? 'desktop' : 'mobile'
+  );
 
   useEffect(() => {
     updatePreview();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, position, email, phone, department, client]);
+
+  useEffect(() => {
+    const updateLayout = () => {
+      if (typeof window === 'undefined') {
+        return;
+      }
+      setLayout(window.innerWidth >= 900 ? 'desktop' : 'mobile');
+    };
+
+    updateLayout();
+    window.addEventListener('resize', updateLayout);
+
+    return () => {
+      window.removeEventListener('resize', updateLayout);
+    };
+  }, []);
 
   const updatePreview = () => {
     const html = getSignatureHTML(
@@ -78,20 +97,19 @@ export function SignatureGenerator({
   const isCopyDisabled =
     !name || !position || !email || !phone || (config.showDepartment && !department);
 
+  const containerStyle = {
+    display: 'flex',
+    flexDirection: layout === 'desktop' ? 'row' : 'column',
+    minHeight: '100vh',
+    width: '100%',
+    fontFamily: 'system-ui, -apple-system, sans-serif',
+    backgroundColor: '#f5f5f5',
+    overflowX: 'hidden' as const,
+  };
+
   return (
     <>
-      <div
-        className="signature-generator"
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          minHeight: '100vh',
-          width: '100%',
-          fontFamily: 'system-ui, -apple-system, sans-serif',
-          backgroundColor: '#f5f5f5',
-          overflowX: 'hidden',
-        }}
-      >
+      <div className="signature-generator" data-layout={layout} style={containerStyle}>
         <div className="signature-input-panel">
         <h1
           style={{
@@ -301,22 +319,11 @@ export function SignatureGenerator({
         </div>
       </div>
       <style jsx>{`
-        .signature-generator {
-          display: flex;
-          flex-direction: row;
-          min-height: 100vh;
-          width: 100%;
-          font-family: system-ui, -apple-system, sans-serif;
-          background-color: #f5f5f5;
-          overflow-x: hidden;
-        }
-
         .signature-input-panel {
           width: 100%;
-          max-width: 400px;
           background-color: #ffffff;
-          padding: 32px;
-          box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+          padding: 24px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
           display: flex;
           flex-direction: column;
           gap: 24px;
@@ -325,12 +332,12 @@ export function SignatureGenerator({
 
         .signature-preview-panel {
           flex: 1;
-          padding: 32px;
+          padding: 24px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: flex-start;
-          overflow-y: auto;
+          overflow: auto;
           box-sizing: border-box;
         }
 
@@ -350,21 +357,14 @@ export function SignatureGenerator({
           max-width: 100%;
         }
 
-        @media (max-width: 899px) {
-          .signature-generator {
-            flex-direction: column;
-          }
+        .signature-generator[data-layout='desktop'] .signature-input-panel {
+          max-width: 400px;
+          padding: 32px;
+          box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+        }
 
-          .signature-input-panel {
-            max-width: 100%;
-            padding: 24px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-          }
-
-          .signature-preview-panel {
-            width: 100%;
-            padding: 24px;
-          }
+        .signature-generator[data-layout='desktop'] .signature-preview-panel {
+          padding: 32px;
         }
       `}</style>
     </>
