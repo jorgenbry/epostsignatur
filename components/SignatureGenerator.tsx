@@ -117,8 +117,12 @@ export function SignatureGenerator({
 
   const isCopyDisabled = !name || !position || !email || !phone;
 
+  const flexDirection: CSSProperties['flexDirection'] =
+    layout === 'desktop' ? 'row' : 'column';
+
   const containerStyle: CSSProperties = {
     display: 'flex',
+    flexDirection,
     minHeight: '100vh',
     width: '100%',
     fontFamily: 'system-ui, -apple-system, sans-serif',
@@ -343,20 +347,6 @@ export function SignatureGenerator({
         </div>
       </div>
       <style jsx>{`
-        .signature-generator {
-          display: flex;
-          flex-direction: column;
-          min-height: 100vh;
-          width: 100%;
-          font-family: system-ui, -apple-system, sans-serif;
-          background-color: #f5f5f5;
-          overflow-x: hidden;
-        }
-
-        .signature-generator[data-layout='desktop'] {
-          flex-direction: row;
-        }
-
         .signature-input-panel {
           width: 100%;
           background-color: #ffffff;
