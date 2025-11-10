@@ -137,9 +137,12 @@ export function SignatureGenerator({
             </label>
             <input
               type="text"
+              name="full-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder={placeholders.name ?? 'Fornavn Etternavn'}
+              autoComplete="name"
+              autoCapitalize="words"
               style={{
                 width: '100%',
                 padding: '12px',
@@ -165,9 +168,11 @@ export function SignatureGenerator({
             </label>
             <input
               type="text"
+              name="job-title"
               value={position}
               onChange={(e) => setPosition(e.target.value)}
               placeholder={placeholders.position ?? 'Din stilling'}
+              autoComplete="organization-title"
               style={{
                 width: '100%',
                 padding: '12px',
@@ -193,8 +198,10 @@ export function SignatureGenerator({
                 Avdeling
               </label>
               <select
+                name="department"
                 value={department}
                 onChange={(e) => setDepartment(e.target.value)}
+                autoComplete="organization"
                 style={{
                   width: '100%',
                   padding: '12px',
@@ -228,9 +235,11 @@ export function SignatureGenerator({
             </label>
             <input
               type="email"
+              name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={placeholders.email ?? 'navn@firma.no'}
+              autoComplete="email"
               style={{
                 width: '100%',
                 padding: '12px',
@@ -256,9 +265,12 @@ export function SignatureGenerator({
             </label>
             <input
               type="tel"
+              name="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder={placeholders.phone ?? '+47 123 45 678'}
+              autoComplete="tel"
+              inputMode="tel"
               style={{
                 width: '100%',
                 padding: '12px',
