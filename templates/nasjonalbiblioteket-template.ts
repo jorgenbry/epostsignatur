@@ -17,11 +17,7 @@ export const nasjonalbiblioteketTemplate = `<!DOCTYPE html>
                 %%Title%%
             </td>
         </tr>
-        <tr>
-            <td style="font-size: {{FONT_SIZE}}; color: {{TEXT_COLOR}}; padding: 0 0 12px 0; border: none;">
-                %%Department%%
-            </td>
-        </tr>
+        {{DEPARTMENT_ROW}}
         <!-- Row 2: Logo -->
         <tr>
             <td style="padding: 0 0 12px 0; border: none;">

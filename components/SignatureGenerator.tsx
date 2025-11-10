@@ -27,12 +27,20 @@ export function SignatureGenerator({
   placeholders = {},
 }: SignatureGeneratorProps) {
   const config = useMemo(() => getClientConfig(client), [client]);
+  const departmentOptions = useMemo(
+    () => config.departmentOptions ?? [],
+    [config.departmentOptions]
+  );
 
   const [name, setName] = useState('');
   const [position, setPosition] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [department, setDepartment] = useState('');
+  const [department, setDepartment] = useState(() =>
+    config.showDepartment && departmentOptions.length > 0
+      ? departmentOptions[0].value
+      : ''
+  );
   const [previewHTML, setPreviewHTML] = useState('');
   const [layout, setLayout] = useState<'mobile' | 'desktop'>(() =>
     typeof window !== 'undefined' && window.innerWidth >= 900 ? 'desktop' : 'mobile'
@@ -42,6 +50,19 @@ export function SignatureGenerator({
     updatePreview();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, position, email, phone, department, client]);
+
+  useEffect(() => {
+    if (config.showDepartment && departmentOptions.length > 0) {
+      setDepartment((current) => {
+        const availableValues = departmentOptions.map((option) => option.value);
+        return availableValues.includes(current)
+          ? current
+          : departmentOptions[0].value;
+      });
+    } else {
+      setDepartment('');
+    }
+  }, [client, config.showDepartment, departmentOptions]);
 
   useEffect(() => {
     const updateLayout = () => {
@@ -94,8 +115,7 @@ export function SignatureGenerator({
     }
   };
 
-  const isCopyDisabled =
-    !name || !position || !email || !phone || (config.showDepartment && !department);
+  const isCopyDisabled = !name || !position || !email || !phone;
 
   const containerStyle: CSSProperties = {
     display: 'flex',
@@ -198,13 +218,11 @@ export function SignatureGenerator({
                   color: '#333',
                 }}
               >
-                Avdeling *
+                Avdeling
               </label>
-              <input
-                type="text"
+              <select
                 value={department}
                 onChange={(e) => setDepartment(e.target.value)}
-                placeholder={placeholders.department ?? 'Avdeling'}
                 style={{
                   width: '100%',
                   padding: '12px',
@@ -212,8 +230,15 @@ export function SignatureGenerator({
                   border: '1px solid #ddd',
                   borderRadius: '6px',
                   boxSizing: 'border-box',
+                  backgroundColor: '#fff',
                 }}
-              />
+              >
+                {departmentOptions.map(({ value, label }) => (
+                  <option key={value || 'none'} value={value}>
+                    {label}
+                  </option>
+                ))}
+              </select>
             </div>
           )}
 

@@ -1,6 +1,22 @@
 import { kaggeTemplate } from '@/templates/kagge-template';
 import { nasjonalbiblioteketTemplate } from '@/templates/nasjonalbiblioteket-template';
 
+type DepartmentOption = {
+  label: string;
+  value: string;
+};
+
+type ClientConfig = {
+  logoUrl: string;
+  logoAlt: string;
+  logoWidth: number;
+  textColor: string;
+  linkColor: string;
+  fontSize: string;
+  showDepartment: boolean;
+  departmentOptions: DepartmentOption[];
+};
+
 // Configuration for different clients
 const CLIENT_CONFIG = {
   kagge: {
@@ -11,6 +27,7 @@ const CLIENT_CONFIG = {
     linkColor: '#FE6039',
     fontSize: '16px',
     showDepartment: false,
+    departmentOptions: [],
   },
   nasjonalbiblioteket: {
     logoUrl: 'https://epostsignatur.vercel.app/logo/nb-logo.png',
@@ -20,9 +37,24 @@ const CLIENT_CONFIG = {
     linkColor: '#005AA3',
     fontSize: '16px',
     showDepartment: true,
+    departmentOptions: [
+      { label: 'Ikke vis avdeling', value: '' },
+      { label: 'Kulturarvdigitalisering', value: 'Kulturarvdigitalisering' },
+      { label: 'Fag og forsking', value: 'Fag og forsking' },
+      { label: 'Kulturformidling', value: 'Kulturformidling' },
+      {
+        label: 'Tilvekst og kunnskapsorganisering',
+        value: 'Tilvekst og kunnskapsorganisering',
+      },
+      { label: 'Digital formidling', value: 'Digital formidling' },
+      { label: 'Tilrettelagt litteratur', value: 'Tilrettelagt litteratur' },
+      { label: 'IT', value: 'IT' },
+      { label: 'Økonomi og personal', value: 'Økonomi og personal' },
+      { label: 'Bygg og tekniske tjenester', value: 'Bygg og tekniske tjenester' },
+    ],
   },
   // Add more clients here as needed
-} as const;
+} satisfies Record<string, ClientConfig>;
 
 const CLIENT_TEMPLATES = {
   kagge: kaggeTemplate,
@@ -74,10 +106,25 @@ export function getSignatureHTML(
   let html = template
     .replace(/%%DisplayName%%/g, data.name || '')
     .replace(/%%Title%%/g, data.position || '')
-    .replace(/%%Department%%/g, config.showDepartment ? (data.department || '') : '')
     .replace(/%%Email%%/g, data.email || '')
     .replace(/%%PhoneNumber%%/g, data.phone || '');
-  
+
+  const departmentValue =
+    config.showDepartment && data.department ? data.department : '';
+
+  const departmentRow =
+    config.showDepartment && departmentValue
+      ? `<tr>
+            <td style="font-size: ${config.fontSize}; color: ${config.textColor}; padding: 0 0 12px 0; border: none;">
+                ${departmentValue}
+            </td>
+        </tr>`
+      : '';
+
+  html = html
+    .replace(/{{DEPARTMENT_ROW}}/g, departmentRow)
+    .replace(/%%Department%%/g, departmentValue);
+
   return html;
 }
 
@@ -85,6 +132,17 @@ export function getSignatureHTML(
 export function getTemplateWithVariables(
   client: keyof typeof CLIENT_CONFIG = 'kagge'
 ): string {
-  return getTemplate(client);
+  const config = CLIENT_CONFIG[client];
+  const baseTemplate = getTemplate(client);
+
+  const departmentPlaceholderRow = config.showDepartment
+    ? `<tr>
+            <td style="font-size: ${config.fontSize}; color: ${config.textColor}; padding: 0 0 12px 0; border: none;">
+                %%Department%%
+            </td>
+        </tr>`
+    : '';
+
+  return baseTemplate.replace(/{{DEPARTMENT_ROW}}/g, departmentPlaceholderRow);
 }
 
