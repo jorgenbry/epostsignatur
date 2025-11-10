@@ -64,7 +64,7 @@ export default function Home() {
           margin: '0 0 8px 0',
           color: '#1a1a1a'
         }}>
-          E-postsignatur Generator
+          Lag din epostsignatur
         </h1>
         <p style={{
           fontSize: '14px',
