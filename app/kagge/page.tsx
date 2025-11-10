@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { SignatureGenerator } from '@/components/SignatureGenerator';
 
 export default function KaggePage() {
@@ -14,5 +15,9 @@ export default function KaggePage() {
     />
   );
 }
+
+export const metadata: Metadata = {
+  title: 'Epostsignatur – Kagge forlag',
+};
 
 

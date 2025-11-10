@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { SignatureGenerator } from '@/components/SignatureGenerator';
 
 export default function NasjonalbiblioteketPage() {
@@ -15,5 +16,9 @@ export default function NasjonalbiblioteketPage() {
     />
   );
 }
+
+export const metadata: Metadata = {
+  title: 'Epostsignatur – Nasjonalbiblioteket',
+};
 
 
