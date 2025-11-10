@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+export const kaggeTemplate = `<!DOCTYPE html>
 <html lang="nb">
 <head>
     <meta charset="UTF-8">
@@ -20,11 +20,11 @@
         <!-- Row 2: Logo -->
         <tr>
             <td style="padding: 0 0 12px 0; border: none;">
-                <img src="https://epostsignatur.vercel.app/logo/kagge-logo.png" 
-                     alt="Logo for Kagge forlag med spiral og navnetrekk" 
-                     width="150" 
+                <img src="{{LOGO_URL}}" 
+                     alt="{{LOGO_ALT}}" 
+                     width="{{LOGO_WIDTH}}" 
                      height="auto" 
-                     style="display: block; border: none; max-width: 150px;">
+                     style="display: block; border: none; max-width: {{LOGO_WIDTH}}px;">
             </td>
         </tr>
         <!-- Row 3: Contact Information -->
@@ -40,5 +40,6 @@
         </tr>
     </table>
 </body>
-</html>
+</html>`;
+
 
