@@ -16,7 +16,7 @@ const CLIENT_CONFIG = {
     logoUrl: 'https://epostsignatur.vercel.app/logo/nb-logo.png',
     logoAlt: 'Logo for Nasjonalbiblioteket',
     logoWidth: 140,
-    textColor: '#1A1A1A',
+    textColor: '#000000',
     linkColor: '#005AA3',
     fontSize: '16px',
     showDepartment: true,
