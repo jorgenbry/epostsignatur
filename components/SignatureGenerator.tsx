@@ -79,25 +79,9 @@ export function SignatureGenerator({
     !name || !position || !email || !phone || (config.showDepartment && !department);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        minHeight: '100vh',
-        fontFamily: 'system-ui, -apple-system, sans-serif',
-        backgroundColor: '#f5f5f5',
-      }}
-    >
-      <div
-        style={{
-          width: '400px',
-          backgroundColor: '#ffffff',
-          padding: '32px',
-          boxShadow: '2px 0 8px rgba(0,0,0,0.1)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '24px',
-        }}
-      >
+    <>
+      <div className="signature-generator">
+        <div className="signature-input-panel">
         <h1
           style={{
             fontSize: '24px',
@@ -282,17 +266,7 @@ export function SignatureGenerator({
         </button>
       </div>
 
-      <div
-        style={{
-          flex: 1,
-          padding: '32px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          overflow: 'auto',
-        }}
-      >
+        <div className="signature-preview-panel">
         <h2
           style={{
             fontSize: '20px',
@@ -304,26 +278,72 @@ export function SignatureGenerator({
           Forhåndsvisning
         </h2>
 
-        <div
-          style={{
-            backgroundColor: '#ffffff',
-            padding: '24px',
-            borderRadius: '8px',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-            maxWidth: '600px',
-            width: '100%',
-          }}
-        >
-          {previewHTML ? (
-            <div dangerouslySetInnerHTML={{ __html: previewHTML }} />
-          ) : (
-            <p style={{ color: '#999', fontStyle: 'italic' }}>
-              Fyll ut feltene til venstre for å se forhåndsvisning
-            </p>
-          )}
+          <div className="signature-preview-card">
+            {previewHTML ? (
+              <div dangerouslySetInnerHTML={{ __html: previewHTML }} />
+            ) : (
+              <p style={{ color: '#999', fontStyle: 'italic' }}>
+                Fyll ut feltene for å se forhåndsvisning
+              </p>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+      <style jsx>{`
+        .signature-generator {
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+          font-family: system-ui, -apple-system, sans-serif;
+          background-color: #f5f5f5;
+        }
+
+        .signature-input-panel {
+          width: 100%;
+          background-color: #ffffff;
+          padding: 24px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+
+        .signature-preview-panel {
+          flex: 1;
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          overflow: auto;
+        }
+
+        .signature-preview-card {
+          background-color: #ffffff;
+          padding: 24px;
+          border-radius: 8px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          width: 100%;
+          max-width: 600px;
+        }
+
+        @media (min-width: 900px) {
+          .signature-generator {
+            flex-direction: row;
+          }
+
+          .signature-input-panel {
+            max-width: 400px;
+            padding: 32px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+          }
+
+          .signature-preview-panel {
+            padding: 32px;
+          }
+        }
+      `}</style>
+    </>
   );
 }
 
