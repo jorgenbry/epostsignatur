@@ -12,7 +12,8 @@ type ClientConfig = {
   logoWidth: number;
   textColor: string;
   linkColor: string;
-  fontSize: string;
+  nameFontSize: string;
+  bodyFontSize: string;
   showDepartment: boolean;
   departmentOptions: DepartmentOption[];
 };
@@ -25,7 +26,8 @@ const CLIENT_CONFIG = {
     logoWidth: 120,
     textColor: '#380F00',
     linkColor: '#FE6039',
-    fontSize: '16px',
+    nameFontSize: '16px',
+    bodyFontSize: '14px',
     showDepartment: false,
     departmentOptions: [],
   },
@@ -33,9 +35,10 @@ const CLIENT_CONFIG = {
     logoUrl: 'https://epostsignatur.vercel.app/logo/nb-logo.png',
     logoAlt: 'Logo for Nasjonalbiblioteket',
     logoWidth: 140,
-    textColor: '#000000',
-    linkColor: '#005AA3',
-    fontSize: '16px',
+    textColor: '#1A1A1A',
+    linkColor: '#40263E',
+    nameFontSize: '16px',
+    bodyFontSize: '14px',
     showDepartment: true,
     departmentOptions: [
       { label: 'Ikke vis avdeling', value: '' },
@@ -91,7 +94,8 @@ function getTemplate(client: keyof typeof CLIENT_CONFIG = 'kagge'): string {
     .replace(/{{LOGO_WIDTH}}/g, String(config.logoWidth))
     .replace(/{{TEXT_COLOR}}/g, config.textColor)
     .replace(/{{LINK_COLOR}}/g, config.linkColor)
-    .replace(/{{FONT_SIZE}}/g, config.fontSize);
+    .replace(/{{NAME_FONT_SIZE}}/g, config.nameFontSize)
+    .replace(/{{BODY_FONT_SIZE}}/g, config.bodyFontSize);
 }
 
 // Replace template variables with actual data
@@ -115,7 +119,7 @@ export function getSignatureHTML(
   const departmentRow =
     config.showDepartment && departmentValue
       ? `<tr>
-            <td style="font-size: ${config.fontSize}; color: ${config.textColor}; padding: 0 0 12px 0; border: none;">
+            <td style="font-size: ${config.bodyFontSize}; color: ${config.textColor}; padding: 0 0 12px 0; border: none;">
                 ${departmentValue}
             </td>
         </tr>`
@@ -137,7 +141,7 @@ export function getTemplateWithVariables(
 
   const departmentPlaceholderRow = config.showDepartment
     ? `<tr>
-            <td style="font-size: ${config.fontSize}; color: ${config.textColor}; padding: 0 0 12px 0; border: none;">
+            <td style="font-size: ${config.bodyFontSize}; color: ${config.textColor}; padding: 0 0 12px 0; border: none;">
                 %%Department%%
             </td>
         </tr>`
