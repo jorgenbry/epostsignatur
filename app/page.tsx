@@ -8,11 +8,13 @@ export default function Home() {
   const [position, setPosition] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [department, setDepartment] = useState('');
+  const [client, setClient] = useState<'kagge' | 'nasjonalbiblioteket'>('kagge');
   const [previewHTML, setPreviewHTML] = useState('');
 
   useEffect(() => {
     updatePreview();
-  }, [name, position, email, phone]);
+  }, [name, position, email, phone, department, client]);
 
   const updatePreview = () => {
     const html = getSignatureHTML({
@@ -20,7 +22,8 @@ export default function Home() {
       position,
       email,
       phone,
-    });
+      department,
+    }, client);
     setPreviewHTML(html);
   };
 
@@ -30,7 +33,8 @@ export default function Home() {
       position,
       email,
       phone,
-    });
+      department,
+    }, client);
     
     try {
       await navigator.clipboard.writeText(html);
@@ -83,6 +87,32 @@ export default function Home() {
               marginBottom: '8px',
               color: '#333'
             }}>
+              Klient
+            </label>
+            <select
+              value={client}
+              onChange={(e) => setClient(e.target.value as 'kagge' | 'nasjonalbiblioteket')}
+              style={{
+                width: '100%',
+                padding: '12px',
+                fontSize: '14px',
+                border: '1px solid #ddd',
+                borderRadius: '6px',
+                boxSizing: 'border-box'
+              }}
+            >
+              <option value="kagge">Kagge forlag</option>
+              <option value="nasjonalbiblioteket">Nasjonalbiblioteket</option>
+            </select>
+          </div>
+          <div>
+            <label style={{
+              display: 'block',
+              fontSize: '14px',
+              fontWeight: '500',
+              marginBottom: '8px',
+              color: '#333'
+            }}>
               Navn *
             </label>
             <input
@@ -100,6 +130,34 @@ export default function Home() {
               }}
             />
           </div>
+
+          {client === 'nasjonalbiblioteket' && (
+            <div>
+              <label style={{
+                display: 'block',
+                fontSize: '14px',
+                fontWeight: '500',
+                marginBottom: '8px',
+                color: '#333'
+              }}>
+                Avdeling
+              </label>
+              <input
+                type="text"
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
+                placeholder="Avdeling"
+                style={{
+                  width: '100%',
+                  padding: '12px',
+                  fontSize: '14px',
+                  border: '1px solid #ddd',
+                  borderRadius: '6px',
+                  boxSizing: 'border-box'
+                }}
+              />
+            </div>
+          )}
 
           <div>
             <label style={{

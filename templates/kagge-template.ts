@@ -5,15 +5,15 @@ export const kaggeTemplate = `<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <table cellpadding="0" cellspacing="0" role="presentation" style="width: auto; max-width: 500px; border-spacing: 0; margin: 0; padding: 0; border: none; font-family: Arial, sans-serif; color: {{TEXT_COLOR}};">
+    <table cellpadding="0" cellspacing="0" role="presentation" style="width: auto; max-width: 500px; border-spacing: 0; margin: 0; padding: 0; border: none; font-family: Arial, sans-serif; color: {{TEXT_COLOR}}; font-size: {{FONT_SIZE}};">
         <!-- Row 1: Name + Position -->
         <tr>
-            <td style="font-size: 14px; font-weight: bold; padding: 0 0 4px 0; border: none;">
+            <td style="font-size: {{FONT_SIZE}}; font-weight: bold; padding: 0 0 4px 0; border: none;">
                 %%DisplayName%%
             </td>
         </tr>
         <tr>
-            <td style="font-size: 12px; color: {{TEXT_COLOR}}; padding: 0 0 12px 0; border: none;">
+            <td style="font-size: {{FONT_SIZE}}; color: {{TEXT_COLOR}}; padding: 0 0 12px 0; border: none;">
                 %%Title%%
             </td>
         </tr>
@@ -29,13 +29,13 @@ export const kaggeTemplate = `<!DOCTYPE html>
         </tr>
         <!-- Row 3: Contact Information -->
         <tr>
-            <td style="font-size: 12px; padding: 0; border: none;">
-                <a href="mailto:%%Email%%" style="color: {{LINK_COLOR}}; text-decoration: none;">%%Email%%</a>
+            <td style="font-size: {{FONT_SIZE}}; padding: 0; border: none;">
+                <a href="mailto:%%Email%%" style="font-size: {{FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">%%Email%%</a>
             </td>
         </tr>
         <tr>
-            <td style="font-size: 12px; padding: 4px 0 0 0; border: none;">
-                <a href="tel:%%PhoneNumber%%" style="color: {{LINK_COLOR}}; text-decoration: none;">%%PhoneNumber%%</a>
+            <td style="font-size: {{FONT_SIZE}}; padding: 4px 0 0 0; border: none;">
+                <a href="tel:%%PhoneNumber%%" style="font-size: {{FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">%%PhoneNumber%%</a>
             </td>
         </tr>
     </table>
