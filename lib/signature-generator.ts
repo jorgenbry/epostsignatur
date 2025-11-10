@@ -6,6 +6,8 @@ const CLIENT_CONFIG = {
     logoUrl: 'https://epostsignatur.vercel.app/logo/kagge-logo.png',
     logoAlt: 'Logo for Kagge forlag med spiral og navnetrekk',
     logoWidth: 160,
+    textColor: '#380F00',
+    linkColor: '#FE6039',
   },
   // Add more clients here as needed
 } as const;
@@ -34,7 +36,9 @@ function getTemplate(client: keyof typeof CLIENT_CONFIG = 'kagge'): string {
   return template
     .replace(/{{LOGO_URL}}/g, config.logoUrl)
     .replace(/{{LOGO_ALT}}/g, config.logoAlt)
-    .replace(/{{LOGO_WIDTH}}/g, String(config.logoWidth));
+    .replace(/{{LOGO_WIDTH}}/g, String(config.logoWidth))
+    .replace(/{{TEXT_COLOR}}/g, config.textColor)
+    .replace(/{{LINK_COLOR}}/g, config.linkColor);
 }
 
 // Replace template variables with actual data
