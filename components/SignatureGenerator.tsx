@@ -1,11 +1,12 @@
-'use client';
+"use client";
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from "react";
+import styles from "./SignatureGenerator.module.scss";
 import {
   ClientKey,
   getClientConfig,
   getSignatureHTML,
-} from '@/lib/signature-generator';
+} from "@/lib/signature-generator";
 
 type SignatureGeneratorProps = {
   client: ClientKey;
@@ -22,8 +23,8 @@ type SignatureGeneratorProps = {
 
 export function SignatureGenerator({
   client,
-  title = 'Lag din epostsignatur',
-  description = 'Fyll ut feltene nedenfor for å generere din e-postsignatur',
+  title = "Lag din epostsignatur",
+  description = "Fyll ut feltene nedenfor for å generere din e-postsignatur",
   placeholders = {},
 }: SignatureGeneratorProps) {
   const config = useMemo(() => getClientConfig(client), [client]);
@@ -33,11 +34,11 @@ export function SignatureGenerator({
   );
   const mergedPlaceholders = useMemo(
     () => ({
-      name: placeholders.name ?? 'Fornavn Etternavn',
-      position: placeholders.position ?? 'Din stilling',
-      email: placeholders.email ?? 'navn@firma.no',
-      phone: placeholders.phone ?? '+47 123 45 678',
-      department: placeholders.department ?? (config.showDepartment ? 'Avdeling' : ''),
+      name: placeholders.name ?? "Fornavn Etternavn",
+      position: placeholders.position ?? "Din stilling",
+      email: placeholders.email ?? "navn@firma.no",
+      phone: placeholders.phone ?? "+47 123 45 678",
+      department: config.showDepartment ? placeholders.department ?? "" : "",
     }),
     [
       placeholders.name,
@@ -49,16 +50,16 @@ export function SignatureGenerator({
     ]
   );
 
-  const [name, setName] = useState('');
-  const [position, setPosition] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [name, setName] = useState("");
+  const [position, setPosition] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [department, setDepartment] = useState(() =>
     config.showDepartment && departmentOptions.length > 0
       ? departmentOptions[0].value
-      : ''
+      : ""
   );
-  const [previewHTML, setPreviewHTML] = useState('');
+  const [previewHTML, setPreviewHTML] = useState("");
 
   useEffect(() => {
     updatePreview();
@@ -74,7 +75,7 @@ export function SignatureGenerator({
           : departmentOptions[0].value;
       });
     } else {
-      setDepartment('');
+      setDepartment("");
     }
   }, [client, config.showDepartment, departmentOptions]);
 
@@ -106,55 +107,24 @@ export function SignatureGenerator({
 
     try {
       await navigator.clipboard.writeText(html);
-      alert('E-postsignatur kopiert til utklippstavlen!');
+      alert("E-postsignatur kopiert til utklippstavlen!");
     } catch (err) {
-      console.error('Kunne ikke kopiere:', err);
-      alert('Kunne ikke kopiere. Prøv igjen.');
+      console.error("Kunne ikke kopiere:", err);
+      alert("Kunne ikke kopiere. Prøv igjen.");
     }
   };
 
   const isCopyDisabled = !name || !position || !email || !phone;
 
   return (
-    <>
-      <div className="signature-generator">
-        <div className="signature-input-panel">
-        <h1
-          style={{
-            fontSize: '24px',
-            fontWeight: 500,
-            margin: '0 0 8px 0',
-            color: '#1a1a1a',
-            fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
-          }}
-        >
-          {title}
-        </h1>
-        <p
-          style={{
-            fontSize: '14px',
-            color: '#666',
-            margin: '0 0 24px 0',
-            fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
-          }}
-        >
-          {description}
-        </p>
+    <div className={styles.signatureGenerator}>
+      <div className={styles.inputPanel}>
+        <h1 className={styles.heading}>{title}</h1>
+        <p className={styles.description}>{description}</p>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <div className={styles.fieldList}>
           <div>
-            <label
-              style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '500',
-                marginBottom: '8px',
-                color: '#333',
-                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
-              }}
-            >
-              Navn *
-            </label>
+            <label className={styles.label}>Navn *</label>
             <input
               type="text"
               name="full-name"
@@ -163,31 +133,12 @@ export function SignatureGenerator({
               placeholder={mergedPlaceholders.name}
               autoComplete="name"
               autoCapitalize="words"
-              style={{
-                width: '100%',
-                padding: '12px',
-                fontSize: '14px',
-                border: '1px solid #ddd',
-                borderRadius: '6px',
-                boxSizing: 'border-box',
-                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
-              }}
+              className={styles.input}
             />
           </div>
 
           <div>
-            <label
-              style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '500',
-                marginBottom: '8px',
-                color: '#333',
-                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
-              }}
-            >
-              Stilling *
-            </label>
+            <label className={styles.label}>Stilling *</label>
             <input
               type="text"
               name="job-title"
@@ -195,50 +146,22 @@ export function SignatureGenerator({
               onChange={(e) => setPosition(e.target.value)}
               placeholder={mergedPlaceholders.position}
               autoComplete="organization-title"
-              style={{
-                width: '100%',
-                padding: '12px',
-                fontSize: '14px',
-                border: '1px solid #ddd',
-                borderRadius: '6px',
-                boxSizing: 'border-box',
-                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
-              }}
+              className={styles.input}
             />
           </div>
 
           {config.showDepartment && (
             <div>
-              <label
-                style={{
-                  display: 'block',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  marginBottom: '8px',
-                  color: '#333',
-                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
-                }}
-              >
-                Avdeling
-              </label>
+              <label className={styles.label}>Avdeling</label>
               <select
                 name="department"
                 value={department}
                 onChange={(e) => setDepartment(e.target.value)}
                 autoComplete="organization"
-                style={{
-                  width: '100%',
-                  padding: '12px',
-                  fontSize: '14px',
-                  border: '1px solid #ddd',
-                  borderRadius: '6px',
-                  boxSizing: 'border-box',
-                  backgroundColor: '#fff',
-                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
-                }}
+                className={styles.select}
               >
                 {departmentOptions.map(({ value, label }) => (
-                  <option key={value || 'none'} value={value}>
+                  <option key={value || "none"} value={value}>
                     {label}
                   </option>
                 ))}
@@ -247,18 +170,7 @@ export function SignatureGenerator({
           )}
 
           <div>
-            <label
-              style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '500',
-                marginBottom: '8px',
-                color: '#333',
-                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
-              }}
-            >
-              E-post *
-            </label>
+            <label className={styles.label}>E-post *</label>
             <input
               type="email"
               name="email"
@@ -266,31 +178,12 @@ export function SignatureGenerator({
               onChange={(e) => setEmail(e.target.value)}
               placeholder={mergedPlaceholders.email}
               autoComplete="email"
-              style={{
-                width: '100%',
-                padding: '12px',
-                fontSize: '14px',
-                border: '1px solid #ddd',
-                borderRadius: '6px',
-                boxSizing: 'border-box',
-                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
-              }}
+              className={styles.input}
             />
           </div>
 
           <div>
-            <label
-              style={{
-                display: 'block',
-                fontSize: '14px',
-                fontWeight: '500',
-                marginBottom: '8px',
-                color: '#333',
-                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
-              }}
-            >
-              Telefonnummer *
-            </label>
+            <label className={styles.label}>Telefonnummer *</label>
             <input
               type="tel"
               name="phone"
@@ -299,15 +192,7 @@ export function SignatureGenerator({
               placeholder={mergedPlaceholders.phone}
               autoComplete="tel"
               inputMode="tel"
-              style={{
-                width: '100%',
-                padding: '12px',
-                fontSize: '14px',
-                border: '1px solid #ddd',
-                borderRadius: '6px',
-                boxSizing: 'border-box',
-                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
-              }}
+              className={styles.input}
             />
           </div>
         </div>
@@ -315,120 +200,26 @@ export function SignatureGenerator({
         <button
           onClick={copyToClipboard}
           disabled={isCopyDisabled}
-          style={{
-            marginTop: 'auto',
-            padding: '14px 24px',
-            fontSize: '16px',
-            fontWeight: '600',
-            color: '#ffffff',
-            backgroundColor: isCopyDisabled ? '#ccc' : '#0066cc',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: isCopyDisabled ? 'not-allowed' : 'pointer',
-            transition: 'background-color 0.2s',
-            fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
-          }}
+          className={styles.copyButton}
         >
           Kopier HTML-signatur
         </button>
       </div>
 
-        <div className="signature-preview-panel">
-        <h2
-          style={{
-            fontSize: '20px',
-            fontWeight: 500,
-            marginBottom: '24px',
-            color: '#1a1a1a',
-            fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
-          }}
-        >
-          Forhåndsvisning
-        </h2>
+      <div className={styles.previewPanel}>
+        <h2 className={styles.previewHeading}>Forhåndsvisning</h2>
 
-          <div className="signature-preview-card">
-            {previewHTML ? (
-              <div dangerouslySetInnerHTML={{ __html: previewHTML }} />
-            ) : (
-              <p style={{ color: '#999', fontStyle: 'italic' }}>
-                Fyll ut feltene for å se forhåndsvisning
-              </p>
-            )}
-          </div>
+        <div className={styles.previewCard}>
+          {previewHTML ? (
+            <div dangerouslySetInnerHTML={{ __html: previewHTML }} />
+          ) : (
+            <p className={styles.previewPlaceholder}>
+              Fyll ut feltene for å se forhåndsvisning
+            </p>
+          )}
         </div>
       </div>
-      <style jsx>{`
-        .signature-generator {
-          display: flex;
-          flex-direction: column;
-          min-height: 100vh;
-          width: 100%;
-          font-family: 'STK Bureau Sans', system-ui, -apple-system, sans-serif;
-          background-color: #f5f5f5;
-          overflow-x: hidden;
-        }
-
-        .signature-input-panel {
-          width: 100%;
-          background-color: #ffffff;
-          padding: 24px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-          box-sizing: border-box;
-        }
-
-        .signature-preview-panel {
-          flex: 1;
-          padding: 24px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: flex-start;
-          overflow: auto;
-          box-sizing: border-box;
-        }
-
-        .signature-preview-card {
-          background-color: #ffffff;
-          padding: 24px;
-          border-radius: 8px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-          width: 100%;
-          max-width: 600px;
-          box-sizing: border-box;
-        }
-
-        .signature-input-panel input,
-        .signature-input-panel select {
-          width: 100%;
-          max-width: 100%;
-        }
-
-        @media (min-width: 900px) {
-          .signature-generator {
-            flex-direction: row;
-            align-items: flex-start;
-          }
-
-          .signature-input-panel {
-            max-width: 400px;
-            padding: 32px;
-            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-            min-height: 100vh;
-          }
-
-          .signature-preview-panel {
-            padding: 32px;
-          }
-
-          .signature-preview-card {
-            padding: 32px;
-          }
-        }
-      `}</style>
-    </>
+    </div>
   );
 }
 

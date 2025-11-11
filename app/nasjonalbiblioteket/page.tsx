@@ -10,7 +10,6 @@ export default function NasjonalbiblioteketPage() {
       placeholders={{
         email: 'navn@nb.no',
         position: 'Din stilling',
-        department: 'Avdeling',
         phone: '+47 12 34 56 78',
       }}
     />
