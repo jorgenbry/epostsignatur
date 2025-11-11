@@ -31,6 +31,23 @@ export function SignatureGenerator({
     () => config.departmentOptions ?? [],
     [config.departmentOptions]
   );
+  const mergedPlaceholders = useMemo(
+    () => ({
+      name: placeholders.name ?? 'Fornavn Etternavn',
+      position: placeholders.position ?? 'Din stilling',
+      email: placeholders.email ?? 'navn@firma.no',
+      phone: placeholders.phone ?? '+47 123 45 678',
+      department: placeholders.department ?? (config.showDepartment ? 'Avdeling' : ''),
+    }),
+    [
+      placeholders.name,
+      placeholders.position,
+      placeholders.email,
+      placeholders.phone,
+      placeholders.department,
+      config.showDepartment,
+    ]
+  );
 
   const [name, setName] = useState('');
   const [position, setPosition] = useState('');
@@ -46,7 +63,7 @@ export function SignatureGenerator({
   useEffect(() => {
     updatePreview();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name, position, email, phone, department, client]);
+  }, [name, position, email, phone, department, client, mergedPlaceholders]);
 
   useEffect(() => {
     if (config.showDepartment && departmentOptions.length > 0) {
@@ -64,11 +81,11 @@ export function SignatureGenerator({
   const updatePreview = () => {
     const html = getSignatureHTML(
       {
-        name,
-        position,
-        email,
-        phone,
-        department,
+        name: name || mergedPlaceholders.name,
+        position: position || mergedPlaceholders.position,
+        email: email || mergedPlaceholders.email,
+        phone: phone || mergedPlaceholders.phone,
+        department: department || mergedPlaceholders.department,
       },
       client
     );
@@ -105,9 +122,10 @@ export function SignatureGenerator({
         <h1
           style={{
             fontSize: '24px',
-            fontWeight: '600',
+            fontWeight: 500,
             margin: '0 0 8px 0',
             color: '#1a1a1a',
+            fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
           }}
         >
           {title}
@@ -117,6 +135,7 @@ export function SignatureGenerator({
             fontSize: '14px',
             color: '#666',
             margin: '0 0 24px 0',
+            fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
           }}
         >
           {description}
@@ -131,6 +150,7 @@ export function SignatureGenerator({
                 fontWeight: '500',
                 marginBottom: '8px',
                 color: '#333',
+                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
               }}
             >
               Navn *
@@ -140,7 +160,7 @@ export function SignatureGenerator({
               name="full-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder={placeholders.name ?? 'Fornavn Etternavn'}
+              placeholder={mergedPlaceholders.name}
               autoComplete="name"
               autoCapitalize="words"
               style={{
@@ -150,6 +170,7 @@ export function SignatureGenerator({
                 border: '1px solid #ddd',
                 borderRadius: '6px',
                 boxSizing: 'border-box',
+                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
               }}
             />
           </div>
@@ -162,6 +183,7 @@ export function SignatureGenerator({
                 fontWeight: '500',
                 marginBottom: '8px',
                 color: '#333',
+                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
               }}
             >
               Stilling *
@@ -171,7 +193,7 @@ export function SignatureGenerator({
               name="job-title"
               value={position}
               onChange={(e) => setPosition(e.target.value)}
-              placeholder={placeholders.position ?? 'Din stilling'}
+              placeholder={mergedPlaceholders.position}
               autoComplete="organization-title"
               style={{
                 width: '100%',
@@ -180,6 +202,7 @@ export function SignatureGenerator({
                 border: '1px solid #ddd',
                 borderRadius: '6px',
                 boxSizing: 'border-box',
+                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
               }}
             />
           </div>
@@ -193,6 +216,7 @@ export function SignatureGenerator({
                   fontWeight: '500',
                   marginBottom: '8px',
                   color: '#333',
+                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
                 }}
               >
                 Avdeling
@@ -210,6 +234,7 @@ export function SignatureGenerator({
                   borderRadius: '6px',
                   boxSizing: 'border-box',
                   backgroundColor: '#fff',
+                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
                 }}
               >
                 {departmentOptions.map(({ value, label }) => (
@@ -229,6 +254,7 @@ export function SignatureGenerator({
                 fontWeight: '500',
                 marginBottom: '8px',
                 color: '#333',
+                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
               }}
             >
               E-post *
@@ -238,7 +264,7 @@ export function SignatureGenerator({
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder={placeholders.email ?? 'navn@firma.no'}
+              placeholder={mergedPlaceholders.email}
               autoComplete="email"
               style={{
                 width: '100%',
@@ -247,6 +273,7 @@ export function SignatureGenerator({
                 border: '1px solid #ddd',
                 borderRadius: '6px',
                 boxSizing: 'border-box',
+                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
               }}
             />
           </div>
@@ -259,6 +286,7 @@ export function SignatureGenerator({
                 fontWeight: '500',
                 marginBottom: '8px',
                 color: '#333',
+                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
               }}
             >
               Telefonnummer *
@@ -268,7 +296,7 @@ export function SignatureGenerator({
               name="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              placeholder={placeholders.phone ?? '+47 123 45 678'}
+              placeholder={mergedPlaceholders.phone}
               autoComplete="tel"
               inputMode="tel"
               style={{
@@ -278,6 +306,7 @@ export function SignatureGenerator({
                 border: '1px solid #ddd',
                 borderRadius: '6px',
                 boxSizing: 'border-box',
+                fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
               }}
             />
           </div>
@@ -297,6 +326,7 @@ export function SignatureGenerator({
             borderRadius: '6px',
             cursor: isCopyDisabled ? 'not-allowed' : 'pointer',
             transition: 'background-color 0.2s',
+            fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
           }}
         >
           Kopier HTML-signatur
@@ -307,9 +337,10 @@ export function SignatureGenerator({
         <h2
           style={{
             fontSize: '20px',
-            fontWeight: '600',
+            fontWeight: 500,
             marginBottom: '24px',
             color: '#1a1a1a',
+            fontFamily: "'STK Bureau Sans', system-ui, -apple-system, sans-serif",
           }}
         >
           Forhåndsvisning
@@ -332,7 +363,7 @@ export function SignatureGenerator({
           flex-direction: column;
           min-height: 100vh;
           width: 100%;
-          font-family: system-ui, -apple-system, sans-serif;
+          font-family: 'STK Bureau Sans', system-ui, -apple-system, sans-serif;
           background-color: #f5f5f5;
           overflow-x: hidden;
         }
