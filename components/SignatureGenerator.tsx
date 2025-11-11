@@ -106,11 +106,19 @@ export function SignatureGenerator({
     );
 
     try {
-      await navigator.clipboard.writeText(html);
-      alert("E-postsignatur kopiert til utklippstavlen!");
+      if (navigator.clipboard && window.ClipboardItem) {
+        const data = {
+          'text/html': new Blob([html], { type: 'text/html' }),
+          'text/plain': new Blob([html], { type: 'text/plain' }),
+        };
+        await navigator.clipboard.write([new ClipboardItem(data)]);
+      } else {
+        await navigator.clipboard.writeText(html);
+      }
+      alert('E-postsignatur kopiert til utklippstavlen!');
     } catch (err) {
-      console.error("Kunne ikke kopiere:", err);
-      alert("Kunne ikke kopiere. Prøv igjen.");
+      console.error('Kunne ikke kopiere:', err);
+      alert('Kunne ikke kopiere. Prøv igjen.');
     }
   };
 
@@ -227,9 +235,9 @@ export function SignatureGenerator({
           onClick={copyToClipboard}
           disabled={isCopyDisabled}
           className={styles.copyButton}
-          aria-label="Kopier HTML-signaturen"
+          aria-label="Kopier signatur"
         >
-          Kopier HTML-signatur
+          Kopier signatur
         </button>
       </form>
 

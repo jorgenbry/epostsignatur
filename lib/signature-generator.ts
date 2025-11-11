@@ -37,7 +37,7 @@ const CLIENT_CONFIG = {
     logoWidth: 200,
     textColor: '#40263E',
     linkColor: '#550029',
-    nameFontSize: '16px',
+    nameFontSize: '15px',
     bodyFontSize: '14px',
     showDepartment: true,
     departmentOptions: [
