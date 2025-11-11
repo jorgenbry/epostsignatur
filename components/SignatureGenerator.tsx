@@ -123,7 +123,7 @@ export function SignatureGenerator({
         <p className={styles.description}>{description}</p>
 
         <fieldset className={styles.fieldset}>
-          <legend className={styles.legend}>Informasjon om signaturen</legend>
+          <legend className={styles.visuallyHidden}>Din kontaktinformasjon</legend>
 
           <div className={styles.fieldList}>
             <div>
