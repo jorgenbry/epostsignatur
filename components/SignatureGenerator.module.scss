@@ -58,8 +58,24 @@
   background-color: #ffffff;
 }
 
+.selectWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &::after {
+    content: "↓";
+    font-size: 12px;
+    color: var(--color-muted-text);
+    position: absolute;
+    right: 12px;
+    pointer-events: none;
+  }
+}
+
 .select {
   appearance: none;
+  padding-right: 36px;
 }
 
 .copyButton {

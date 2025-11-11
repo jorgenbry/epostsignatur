@@ -153,19 +153,21 @@ export function SignatureGenerator({
           {config.showDepartment && (
             <div>
               <label className={styles.label}>Avdeling</label>
-              <select
-                name="department"
-                value={department}
-                onChange={(e) => setDepartment(e.target.value)}
-                autoComplete="organization"
-                className={styles.select}
-              >
-                {departmentOptions.map(({ value, label }) => (
-                  <option key={value || "none"} value={value}>
-                    {label}
-                  </option>
-                ))}
-              </select>
+              <div className={styles.selectWrapper}>
+                <select
+                  name="department"
+                  value={department}
+                  onChange={(e) => setDepartment(e.target.value)}
+                  autoComplete="organization"
+                  className={styles.select}
+                >
+                  {departmentOptions.map(({ value, label }) => (
+                    <option key={value || "none"} value={value}>
+                      {label}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
           )}
 
