@@ -25,7 +25,7 @@ export const nasjonalbiblioteketTemplate = `<!DOCTYPE html>
                      alt="{{LOGO_ALT}}" 
                      width="{{LOGO_WIDTH}}" 
                      height="auto" 
-                     style="display: block; border: none; max-width: {{LOGO_WIDTH}}px; transform: translateX(-4px);">
+                     style="display: block; border: none; max-width: {{LOGO_WIDTH}}px;">
             </td>
         </tr>
         <!-- Row 3: Contact Information -->
