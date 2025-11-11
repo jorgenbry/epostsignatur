@@ -118,97 +118,122 @@ export function SignatureGenerator({
 
   return (
     <div className={styles.signatureGenerator}>
-      <div className={styles.inputPanel}>
+      <form className={styles.inputPanel} onSubmit={(e) => e.preventDefault()}>
         <h1 className={styles.heading}>{title}</h1>
         <p className={styles.description}>{description}</p>
 
-        <div className={styles.fieldList}>
-          <div>
-            <label className={styles.label}>Navn *</label>
-            <input
-              type="text"
-              name="full-name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder={mergedPlaceholders.name}
-              autoComplete="name"
-              autoCapitalize="words"
-              className={styles.input}
-            />
-          </div>
+        <fieldset className={styles.fieldset}>
+          <legend className={styles.legend}>Informasjon om signaturen</legend>
 
-          <div>
-            <label className={styles.label}>Stilling *</label>
-            <input
-              type="text"
-              name="job-title"
-              value={position}
-              onChange={(e) => setPosition(e.target.value)}
-              placeholder={mergedPlaceholders.position}
-              autoComplete="organization-title"
-              className={styles.input}
-            />
-          </div>
-
-          {config.showDepartment && (
+          <div className={styles.fieldList}>
             <div>
-              <label className={styles.label}>Avdeling</label>
-              <div className={styles.selectWrapper}>
-                <select
-                  name="department"
-                  value={department}
-                  onChange={(e) => setDepartment(e.target.value)}
-                  autoComplete="organization"
-                  className={styles.select}
-                >
-                  {departmentOptions.map(({ value, label }) => (
-                    <option key={value || "none"} value={value}>
-                      {label}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <label className={styles.label} htmlFor="name-input">
+                Navn *
+              </label>
+              <input
+                id="name-input"
+                type="text"
+                name="full-name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder={mergedPlaceholders.name}
+                autoComplete="name"
+                autoCapitalize="words"
+                className={styles.input}
+                required
+              />
             </div>
-          )}
 
-          <div>
-            <label className={styles.label}>E-post *</label>
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder={mergedPlaceholders.email}
-              autoComplete="email"
-              className={styles.input}
-            />
-          </div>
+            <div>
+              <label className={styles.label} htmlFor="position-input">
+                Stilling *
+              </label>
+              <input
+                id="position-input"
+                type="text"
+                name="job-title"
+                value={position}
+                onChange={(e) => setPosition(e.target.value)}
+                placeholder={mergedPlaceholders.position}
+                autoComplete="organization-title"
+                className={styles.input}
+                required
+              />
+            </div>
 
-          <div>
-            <label className={styles.label}>Telefonnummer *</label>
-            <input
-              type="tel"
-              name="phone"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder={mergedPlaceholders.phone}
-              autoComplete="tel"
-              inputMode="tel"
-              className={styles.input}
-            />
+            {config.showDepartment && (
+              <div>
+                <label className={styles.label} htmlFor="department-input">
+                  Avdeling
+                </label>
+                <div className={styles.selectWrapper}>
+                  <select
+                    id="department-input"
+                    name="department"
+                    value={department}
+                    onChange={(e) => setDepartment(e.target.value)}
+                    autoComplete="organization"
+                    className={styles.select}
+                  >
+                    {departmentOptions.map(({ value, label }) => (
+                      <option key={value || "none"} value={value}>
+                        {label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            )}
+
+            <div>
+              <label className={styles.label} htmlFor="email-input">
+                E-post *
+              </label>
+              <input
+                id="email-input"
+                type="email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={mergedPlaceholders.email}
+                autoComplete="email"
+                className={styles.input}
+                required
+              />
+            </div>
+
+            <div>
+              <label className={styles.label} htmlFor="phone-input">
+                Telefonnummer *
+              </label>
+              <input
+                id="phone-input"
+                type="tel"
+                name="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder={mergedPlaceholders.phone}
+                autoComplete="tel"
+                inputMode="tel"
+                className={styles.input}
+                required
+              />
+            </div>
           </div>
-        </div>
+        </fieldset>
 
         <button
+          type="button"
           onClick={copyToClipboard}
           disabled={isCopyDisabled}
           className={styles.copyButton}
+          aria-label="Kopier HTML-signaturen"
         >
           Kopier HTML-signatur
         </button>
-      </div>
+      </form>
 
-      <div className={styles.previewPanel}>
+      <div className={styles.previewPanel} aria-live="polite">
         <h2 className={styles.previewHeading}>Forhåndsvisning</h2>
 
         <div className={styles.previewCard}>

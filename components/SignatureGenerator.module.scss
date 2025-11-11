@@ -56,12 +56,23 @@
   box-sizing: border-box;
   font-family: var(--font-family-base);
   background-color: #ffffff;
+
+  &:focus-visible {
+    outline: 3px solid rgba(0, 102, 204, 0.35);
+    outline-offset: 2px;
+  }
 }
 
 .selectWrapper {
   position: relative;
   display: flex;
   align-items: center;
+
+  &:focus-within {
+    outline: 3px solid rgba(0, 102, 204, 0.35);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
 
   &::after {
     content: "↓";
@@ -98,6 +109,11 @@
   &:disabled {
     background-color: var(--color-primary-disabled);
     cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba(0, 102, 204, 0.35);
+    outline-offset: 2px;
   }
 }
 
