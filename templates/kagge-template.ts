@@ -6,9 +6,8 @@ export const kaggeTemplate = `<!DOCTYPE html>
 </head>
 <body>
     <table cellpadding="0" cellspacing="0" role="presentation" style="width: auto; max-width: 500px; border-spacing: 0; margin: 0; padding: 0; border: none; font-family: Arial, sans-serif; color: {{TEXT_COLOR}}; font-size: {{BODY_FONT_SIZE}};">
-        <!-- Row 1: Name + Position -->
         <tr>
-            <td style="font-size: {{NAME_FONT_SIZE}}; font-weight: bold; padding: 0 0 4px 0; border: none;">
+            <td style="font-size: {{NAME_FONT_SIZE}}; font-weight: bold; padding: 16px 0 4px 0; border: none;">
                 %%DisplayName%%
             </td>
         </tr>
@@ -17,7 +16,6 @@ export const kaggeTemplate = `<!DOCTYPE html>
                 %%Title%%
             </td>
         </tr>
-        <!-- Row 2: Logo -->
         <tr>
             <td style="padding: 8px 0 24px 0; border: none;">
                 <img src="{{LOGO_URL}}" 
@@ -27,7 +25,6 @@ export const kaggeTemplate = `<!DOCTYPE html>
                      style="display: block; border: none; max-width: {{LOGO_WIDTH}}px;">
             </td>
         </tr>
-        <!-- Row 3: Contact Information -->
         <tr>
             <td style="font-size: {{BODY_FONT_SIZE}}; padding: 0; border: none;">
                 <a href="mailto:%%Email%%" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">%%Email%%</a>
