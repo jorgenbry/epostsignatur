@@ -19,7 +19,7 @@ export const kaggeTemplate = `<!DOCTYPE html>
         </tr>
         <!-- Row 2: Logo -->
         <tr>
-            <td style="padding: 0 0 12px 0; border: none;">
+            <td style="padding: 8px 0 24px 0; border: none;">
                 <img src="{{LOGO_URL}}" 
                      alt="{{LOGO_ALT}}" 
                      width="{{LOGO_WIDTH}}" 

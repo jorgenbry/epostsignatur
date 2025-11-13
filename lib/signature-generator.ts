@@ -25,7 +25,7 @@ const CLIENT_CONFIG = {
     logoAlt: 'Logo for Kagge forlag med spiral og navnetrekk',
     logoWidth: 120,
     textColor: '#380F00',
-    linkColor: '#FE6039',
+    linkColor: '#5C200A',
     nameFontSize: '16px',
     bodyFontSize: '14px',
     showDepartment: false,
