@@ -22,8 +22,9 @@ export const nasjonalbiblioteketTemplate = `<!DOCTYPE html>
                 <img src="{{LOGO_URL}}" 
                      alt="{{LOGO_ALT}}" 
                      width="{{LOGO_WIDTH}}" 
-                     height="auto" 
-                     style="display: block; border: none; max-width: {{LOGO_WIDTH}}px;">
+                     height="{{LOGO_HEIGHT}}" 
+                     border="0"
+                     style="display: block; border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: {{LOGO_WIDTH}}px; width: {{LOGO_WIDTH}}px;">
             </td>
         </tr>
         <tr>

@@ -10,20 +10,25 @@ type ClientConfig = {
   logoUrl: string;
   logoAlt: string;
   logoWidth: number;
+  logoHeight?: number;
   textColor: string;
   linkColor: string;
   nameFontSize: string;
   bodyFontSize: string;
   showDepartment: boolean;
   departmentOptions: DepartmentOption[];
+  // Alternative logo URL for hosting on company domain (more trusted by Outlook)
+  trustedLogoUrl?: string;
 };
 
 // Configuration for different clients
 const CLIENT_CONFIG = {
   kagge: {
-    logoUrl: 'https://epostsignatur.vercel.app/logo/kagge-logo.png',
+    logoUrl: 'https://signatur.smuss.studio/logo/kagge-logo.png',
+    trustedLogoUrl: 'https://kagge.no/content/uploads/2025/11/kagge-logo.png',
     logoAlt: 'Logo for Kagge forlag med spiral og navnetrekk',
     logoWidth: 120,
+    logoHeight: 30, // 200x50 original, scaled to 120x30 (4:1 ratio)
     textColor: '#380F00',
     linkColor: '#5C200A',
     nameFontSize: '16px',
@@ -32,9 +37,10 @@ const CLIENT_CONFIG = {
     departmentOptions: [],
   },
   nasjonalbiblioteket: {
-    logoUrl: 'https://epostsignatur.vercel.app/logo/nb-logo.png',
+    logoUrl: 'https://signatur.smuss.studio/logo/nb-logo.png',
     logoAlt: 'Logo for Nasjonalbiblioteket',
     logoWidth: 200,
+    logoHeight: 27, // 512x70 original, scaled to 200x27 (proportional)
     textColor: '#40263E',
     linkColor: '#550029',
     nameFontSize: '15px',
@@ -55,6 +61,8 @@ const CLIENT_CONFIG = {
       { label: 'Økonomi og personal', value: 'Økonomi og personal' },
       { label: 'Bygg og tekniske tjenester', value: 'Bygg og tekniske tjenester' },
     ],
+    // To use a trusted domain for Nasjonalbiblioteket:
+    // trustedLogoUrl: 'https://static.nb.no/logo/nb-logo.png',
   },
   // Add more clients here as needed
 } satisfies Record<string, ClientConfig>;
@@ -88,10 +96,16 @@ function getTemplate(client: keyof typeof CLIENT_CONFIG = 'kagge'): string {
     throw new Error(`Template configuration missing for client "${client}"`);
   }
 
+  // Use trusted logo URL if available, otherwise fall back to regular logo URL
+  // Trusted URLs (from company domain) are more likely to be trusted by Outlook
+  const logoUrl = (config as ClientConfig).trustedLogoUrl || config.logoUrl;
+  const logoHeight = config.logoHeight || Math.round(config.logoWidth * 0.33); // Default aspect ratio
+
   return template
-    .replace(/{{LOGO_URL}}/g, config.logoUrl)
+    .replace(/{{LOGO_URL}}/g, logoUrl)
     .replace(/{{LOGO_ALT}}/g, config.logoAlt)
     .replace(/{{LOGO_WIDTH}}/g, String(config.logoWidth))
+    .replace(/{{LOGO_HEIGHT}}/g, String(logoHeight))
     .replace(/{{TEXT_COLOR}}/g, config.textColor)
     .replace(/{{LINK_COLOR}}/g, config.linkColor)
     .replace(/{{NAME_FONT_SIZE}}/g, config.nameFontSize)

@@ -68,6 +68,53 @@ Templaten bruker Active Directory-kompatible variabler:
 - `%%Email%%` - E-postadresse
 - `%%PhoneNumber%%` - Telefonnummer
 
+## Outlook-bildeblokering (Image Blocking)
+
+Outlook blokkerer eksterne bilder som standard for sikkerhet. Dette betyr at mottakere kan måtte klikke "Klikk for å se bilder" for å se logoen i signaturen.
+
+### Løsninger (best til dårligst):
+
+#### 1. **Host bilder på firmaets eget domene (Anbefalt)**
+Det beste alternativet er å hoste logoene på firmaets eget domene (f.eks. `kagge.no`). Dette gjør at Outlook stoler mer på bildene.
+
+**Steg:**
+1. Last opp logoene til firmaets webserver eller CDN (f.eks. `static.kagge.no/logo/kagge-logo.png`)
+2. Oppdater `trustedLogoUrl` i `lib/signature-generator.ts`:
+   ```typescript
+   kagge: {
+     // ... other config
+     trustedLogoUrl: 'https://static.kagge.no/logo/kagge-logo.png',
+   }
+   ```
+
+#### 2. **Konfigurer Exchange/Outlook til å tillate bilder**
+IT-avdelingen kan konfigurere Exchange Server eller Microsoft 365 til å tillate bilder fra et spesifikt domene:
+
+**For Exchange Server:**
+- Konfigurer Exchange Content Filter for å tillate bilder fra domenet
+
+**For Microsoft 365:**
+- I Exchange Admin Center, gå til Protection → Content Filter
+- Legg til domenet (f.eks. `epostsignatur.vercel.app`) i tillatelsesliste
+
+**For Outlook-brukere:**
+- Hver bruker kan legge til avsenderen i "Trygge avsendere" i Outlook
+- Dette er ikke ideelt da det krever handling fra hver bruker
+
+#### 3. **Bruk en CDN som er mer pålitelig**
+Noen CDN-tjenester har bedre rykte hos e-postklienter, men dette er fortsatt ikke like godt som firmaets eget domene.
+
+### Hva er gjort i koden?
+
+Koden har nå:
+- ✅ Eksplisitte `width` og `height`-attributter (viktig for Outlook)
+- ✅ `border="0"` attributt
+- ✅ Optimaliserte CSS-stiler for Outlook
+- ✅ Støtte for `trustedLogoUrl` som prioriteres over vanlig `logoUrl`
+
+### Notat om Base64
+Base64-kodede bilder bør **ikke** brukes, da de ofte blokkeres av moderne e-postklienter av sikkerhetshensyn.
+
 ## Teknologi
 
 - Next.js 14
