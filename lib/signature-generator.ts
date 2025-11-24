@@ -1,3 +1,4 @@
+import { demoTemplate } from '@/templates/demo-template';
 import { kaggeTemplate } from '@/templates/kagge-template';
 import { nasjonalbiblioteketTemplate } from '@/templates/nasjonalbiblioteket-template';
 
@@ -23,6 +24,18 @@ type ClientConfig = {
 
 // Configuration for different clients
 const CLIENT_CONFIG = {
+  demo: {
+    logoUrl: 'https://signatur.smuss.studio/logo/kagge-logo.png',
+    logoAlt: 'Logo for Kagge forlag med spiral og navnetrekk',
+    logoWidth: 120,
+    logoHeight: 30,
+    textColor: '#380F00',
+    linkColor: '#5C200A',
+    nameFontSize: '16px',
+    bodyFontSize: '14px',
+    showDepartment: false,
+    departmentOptions: [],
+  },
   kagge: {
     logoUrl: 'https://signatur.smuss.studio/logo/kagge-logo.png',
     trustedLogoUrl: 'https://kagge.no/content/uploads/2025/11/kagge-logo.png',
@@ -68,6 +81,7 @@ const CLIENT_CONFIG = {
 } satisfies Record<string, ClientConfig>;
 
 const CLIENT_TEMPLATES = {
+  demo: demoTemplate,
   kagge: kaggeTemplate,
   nasjonalbiblioteket: nasjonalbiblioteketTemplate,
   // Add more client templates here as needed

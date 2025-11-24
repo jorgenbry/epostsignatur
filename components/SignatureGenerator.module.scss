@@ -141,6 +141,7 @@
   justify-content: flex-start;
   overflow: auto;
   box-sizing: border-box;
+  min-height: 100vh;
 }
 
 .previewHeading {
@@ -165,6 +166,22 @@
   color: #999999;
   font-style: italic;
   margin: 0;
+}
+
+.previewCredit {
+  margin-top: auto;
+  margin-bottom: 0;
+  align-self: flex-start;
+  font-size: 0.75rem;
+  color: var(--color-muted-text);
+  max-width: 37.5rem;
+  line-height: 1.4;
+  text-align: left;
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+  }
 }
 
 .visuallyHidden {
@@ -194,11 +211,16 @@
 
   .previewPanel {
     padding: 2rem;
+    min-height: 100vh;
   }
 
   .previewCard {
     padding: 2rem;
     margin: 0 auto 0 0;
+  }
+
+  .previewCredit {
+    max-width: 37.5rem;
   }
 }
 

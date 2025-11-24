@@ -253,6 +253,15 @@ export function SignatureGenerator({
             </p>
           )}
         </div>
+
+        <p className={styles.previewCredit}>
+          Dette er en tjeneste fra{" "}
+          <a href="https://smuss.studio" target="_blank" rel="noreferrer">
+            Smuss Studio
+          </a>
+          . Er det noe som ikke fungerer? Ta kontakt med{" "}
+          <a href="mailto:jorgen@smuss.studio">jorgen@smuss.studio</a>.
+        </p>
       </div>
     </div>
   );
