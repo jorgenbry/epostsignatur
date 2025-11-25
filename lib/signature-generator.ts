@@ -25,12 +25,12 @@ type ClientConfig = {
 // Configuration for different clients
 const CLIENT_CONFIG = {
   demo: {
-    logoUrl: 'https://signatur.smuss.studio/logo/kagge-logo.png',
+    logoUrl: 'https://signatur.smuss.studio/logo/stuss-smoothio.png',
     logoAlt: 'Logo for Kagge forlag med spiral og navnetrekk',
     logoWidth: 120,
-    logoHeight: 30,
-    textColor: '#380F00',
-    linkColor: '#5C200A',
+    logoHeight: 20,
+    textColor: 'black',
+    linkColor: 'blue',
     nameFontSize: '16px',
     bodyFontSize: '14px',
     showDepartment: false,
