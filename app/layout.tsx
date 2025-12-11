@@ -27,10 +27,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="nb">
-      <body>
+      <head>
         <Script
           async
-          data-domain="signature.smuss.studio"
           src="https://plausible.io/js/pa-BoxcGzqWSYypY3gUWJMMQ.js"
           strategy="afterInteractive"
         />
@@ -44,6 +43,8 @@ export default function RootLayout({
             `,
           }}
         />
+      </head>
+      <body>
         {children}
       </body>
     </html>
