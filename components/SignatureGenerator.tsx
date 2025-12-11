@@ -115,6 +115,11 @@ export function SignatureGenerator({
       } else {
         await navigator.clipboard.writeText(html);
       }
+      
+      if (typeof window !== 'undefined' && window.plausible) {
+        window.plausible('Kopier signatur');
+      }
+      
       alert('E-postsignatur kopiert til utklippstavlen!');
     } catch (err) {
       console.error('Kunne ikke kopiere:', err);
