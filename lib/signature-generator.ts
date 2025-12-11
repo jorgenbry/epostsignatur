@@ -1,6 +1,7 @@
 import { demoTemplate } from '@/templates/demo-template';
 import { kaggeTemplate } from '@/templates/kagge-template';
 import { nasjonalbiblioteketTemplate } from '@/templates/nasjonalbiblioteket-template';
+import { litteraturhusetTemplate } from '@/templates/litteraturhuset-template';
 
 type DepartmentOption = {
   label: string;
@@ -77,6 +78,21 @@ const CLIENT_CONFIG = {
     // To use a trusted domain for Nasjonalbiblioteket:
     // trustedLogoUrl: 'https://static.nb.no/logo/nb-logo.png',
   },
+  litteraturhuset: {
+    logoUrl: 'https://signatur.smuss.studio/logo/litteraturhuset-logo.png',
+    trustedLogoUrl: 'https://www.litteraturhuset.no/logo.png',
+    logoAlt: 'Logo for Litteraturhuset',
+    logoWidth: 192,
+    logoHeight: 24,
+    textColor: '#000000',
+    linkColor: '#265B00',
+    nameFontSize: '16px',
+    bodyFontSize: '14px',
+    showDepartment: false,
+    departmentOptions: [],
+    // To use a trusted domain for Litteraturhuset:
+    // trustedLogoUrl: 'https://litteraturhuset.no/logo/litteraturhuset-logo.png',
+  },
   // Add more clients here as needed
 } satisfies Record<string, ClientConfig>;
 
@@ -84,6 +100,7 @@ const CLIENT_TEMPLATES = {
   demo: demoTemplate,
   kagge: kaggeTemplate,
   nasjonalbiblioteket: nasjonalbiblioteketTemplate,
+  litteraturhuset: litteraturhusetTemplate,
   // Add more client templates here as needed
 } as const;
 

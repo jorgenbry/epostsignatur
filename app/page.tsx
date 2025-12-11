@@ -7,15 +7,17 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <div style={{
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '2rem',
-      fontFamily: 'var(--font-family-base)',
-    }}>
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '2rem',
+        fontFamily: 'var(--font-family-base)',
+      }}
+    >
       <h1
         style={{
           transform: 'rotate(180deg)',
@@ -27,12 +29,15 @@ export default function HomePage() {
           fontFamily: 'var(--font-family-base)',
         }}
       >
-        Smuss<br />Studio
+        Smuss<br />
+        Studio
       </h1>
-      <div style={{
-        fontSize: '6rem',
-        lineHeight: '1',
-      }}>
+      <div
+        style={{
+          fontSize: '6rem',
+          lineHeight: '1',
+        }}
+      >
         🖋️
       </div>
     </div>
