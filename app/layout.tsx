@@ -30,6 +30,7 @@ export default function RootLayout({
       <body>
         <Script
           async
+          data-domain="signature.smuss.studio"
           src="https://plausible.io/js/pa-BoxcGzqWSYypY3gUWJMMQ.js"
           strategy="afterInteractive"
         />
