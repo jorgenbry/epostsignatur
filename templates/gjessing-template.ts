@@ -1,4 +1,4 @@
-export const litteraturhusetTemplate = `<!DOCTYPE html>
+export const gjessingTemplate = `<!DOCTYPE html>
 <html lang="nb">
 <head>
     <meta charset="UTF-8">
@@ -12,13 +12,8 @@ export const litteraturhusetTemplate = `<!DOCTYPE html>
             </td>
         </tr>
         <tr>
-            <td style="font-size: {{BODY_FONT_SIZE}}; color: {{TEXT_COLOR}}; padding: 0 0 4px 0; border: none;">
-                %%Title%%
-            </td>
-        </tr>
-        <tr>
             <td style="font-size: {{BODY_FONT_SIZE}}; color: {{TEXT_COLOR}}; padding: 0 0 12px 0; border: none;">
-                Stiftelsen Litteraturhuset
+                %%Title%%
             </td>
         </tr>
         <tr>
@@ -42,12 +37,9 @@ export const litteraturhusetTemplate = `<!DOCTYPE html>
             </td>
         </tr>
         <tr>
-            <td style="padding: 16px 0 0 0; border: none;">
-                <div style="margin: 0; padding: 4px 0 0 0;">
-                    <a href="https://www.litteraturhuset.no?utm_source=email-signature" style="color:{{LINK_COLOR}};text-decoration:none;border-style:solid;border-width:1px;border-color:{{LINK_COLOR}};border-radius:6px;padding-right:10px;padding-left:10px;padding-bottom:5px;padding-top:5px;display:inline-block;margin-right:4px;font-size:{{BODY_FONT_SIZE}};line-height:1.4em" target="_blank">Litteraturhuset.no</a>
-                    <a href="https://www.litteraturhuset.no/nb/nyhetsbrev?utm_source=email-signature" style="color:{{LINK_COLOR}};text-decoration:none;border-style:solid;border-width:1px;border-color:{{LINK_COLOR}};border-radius:6px;padding-right:10px;padding-left:10px;padding-bottom:5px;padding-top:5px;display:inline-block;margin-right:4px;font-size:{{BODY_FONT_SIZE}};line-height:1.4em" target="_blank">Nyhetsbrev</a>
-                    <a href="https://www.litteraturhuset.no/nb/podkaster?utm_source=email-signature" style="color:{{LINK_COLOR}};text-decoration:none;border-style:solid;border-width:1px;border-color:{{LINK_COLOR}};border-radius:6px;padding-right:10px;padding-left:10px;padding-bottom:5px;padding-top:5px;display:inline-block;font-size:{{BODY_FONT_SIZE}};line-height:1.4em" target="_blank">Podkaster</a>
-                </div>
+            <td style="font-size: {{BODY_FONT_SIZE}}; padding: 24px 0 0 0; border: none;">
+                <a href="https://gjessing.law" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">(gjessing.law)</a>
+                <a href="%%LinkedIn%%" style="margin-left: 8px;font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">(LinkedIn)</a>
             </td>
         </tr>
     </table>

@@ -18,6 +18,7 @@ type SignatureGeneratorProps = {
     email?: string;
     phone?: string;
     department?: string;
+    linkedin?: string;
   };
 };
 
@@ -39,6 +40,7 @@ export function SignatureGenerator({
       email: placeholders.email ?? "navn@firma.no",
       phone: placeholders.phone ?? "+47 123 45 678",
       department: config.showDepartment ? placeholders.department ?? "" : "",
+      linkedin: config.showLinkedin ? placeholders.linkedin ?? "" : "",
     }),
     [
       placeholders.name,
@@ -46,7 +48,9 @@ export function SignatureGenerator({
       placeholders.email,
       placeholders.phone,
       placeholders.department,
+      placeholders.linkedin,
       config.showDepartment,
+      config.showLinkedin,
     ]
   );
 
@@ -59,12 +63,13 @@ export function SignatureGenerator({
       ? departmentOptions[0].value
       : ""
   );
+  const [linkedin, setLinkedin] = useState("");
   const [previewHTML, setPreviewHTML] = useState("");
 
   useEffect(() => {
     updatePreview();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name, position, email, phone, department, client, mergedPlaceholders]);
+  }, [name, position, email, phone, department, linkedin, client, mergedPlaceholders]);
 
   useEffect(() => {
     if (config.showDepartment && departmentOptions.length > 0) {
@@ -87,6 +92,7 @@ export function SignatureGenerator({
         email: email || mergedPlaceholders.email,
         phone: phone || mergedPlaceholders.phone,
         department: department || mergedPlaceholders.department,
+        linkedin: linkedin || mergedPlaceholders.linkedin,
       },
       client
     );
@@ -101,6 +107,7 @@ export function SignatureGenerator({
         email,
         phone,
         department,
+        linkedin,
       },
       client
     );
@@ -232,6 +239,24 @@ export function SignatureGenerator({
                 required
               />
             </div>
+
+            {config.showLinkedin && (
+              <div>
+                <label className={styles.label} htmlFor="linkedin-input">
+                  LinkedIn URL
+                </label>
+                <input
+                  id="linkedin-input"
+                  type="url"
+                  name="linkedin"
+                  value={linkedin}
+                  onChange={(e) => setLinkedin(e.target.value)}
+                  placeholder={mergedPlaceholders.linkedin || "https://linkedin.com/in/dittnavn"}
+                  autoComplete="url"
+                  className={styles.input}
+                />
+              </div>
+            )}
           </div>
         </fieldset>
 

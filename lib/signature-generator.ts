@@ -2,6 +2,7 @@ import { demoTemplate } from '@/templates/demo-template';
 import { kaggeTemplate } from '@/templates/kagge-template';
 import { nasjonalbiblioteketTemplate } from '@/templates/nasjonalbiblioteket-template';
 import { litteraturhusetTemplate } from '@/templates/litteraturhuset-template';
+import { gjessingTemplate } from '@/templates/gjessing-template';
 
 type DepartmentOption = {
   label: string;
@@ -19,6 +20,7 @@ type ClientConfig = {
   bodyFontSize: string;
   showDepartment: boolean;
   departmentOptions: DepartmentOption[];
+  showLinkedin: boolean;
   // Alternative logo URL for hosting on company domain (more trusted by Outlook)
   trustedLogoUrl?: string;
 };
@@ -36,6 +38,7 @@ const CLIENT_CONFIG = {
     bodyFontSize: '14px',
     showDepartment: false,
     departmentOptions: [],
+    showLinkedin: false,
   },
   kagge: {
     logoUrl: 'https://signatur.smuss.studio/logo/kagge-logo.png',
@@ -49,6 +52,7 @@ const CLIENT_CONFIG = {
     bodyFontSize: '14px',
     showDepartment: false,
     departmentOptions: [],
+    showLinkedin: false,
   },
   nasjonalbiblioteket: {
     logoUrl: 'https://signatur.smuss.studio/logo/nb-logo.png',
@@ -75,6 +79,7 @@ const CLIENT_CONFIG = {
       { label: 'Økonomi og personal', value: 'Økonomi og personal' },
       { label: 'Bygg og tekniske tjenester', value: 'Bygg og tekniske tjenester' },
     ],
+    showLinkedin: false,
     // To use a trusted domain for Nasjonalbiblioteket:
     // trustedLogoUrl: 'https://static.nb.no/logo/nb-logo.png',
   },
@@ -90,8 +95,22 @@ const CLIENT_CONFIG = {
     bodyFontSize: '14px',
     showDepartment: false,
     departmentOptions: [],
+    showLinkedin: false,
     // To use a trusted domain for Litteraturhuset:
     // trustedLogoUrl: 'https://litteraturhuset.no/logo/litteraturhuset-logo.png',
+  },
+  gjessing: {
+    logoUrl: '/logo/gjessing-logo.png',
+    logoAlt: 'Logo for Gjessing',
+    logoWidth: 180,
+    logoHeight: 35,
+    textColor: '#000000',
+    linkColor: '#223409',
+    nameFontSize: '16px',
+    bodyFontSize: '14px',
+    showDepartment: false,
+    departmentOptions: [],
+    showLinkedin: true,
   },
   // Add more clients here as needed
 } satisfies Record<string, ClientConfig>;
@@ -101,6 +120,7 @@ const CLIENT_TEMPLATES = {
   kagge: kaggeTemplate,
   nasjonalbiblioteket: nasjonalbiblioteketTemplate,
   litteraturhuset: litteraturhusetTemplate,
+  gjessing: gjessingTemplate,
   // Add more client templates here as needed
 } as const;
 
@@ -116,6 +136,7 @@ type SignatureData = {
   email: string;
   phone: string;
   department?: string;
+  linkedin?: string;
 };
 
 // Get the template HTML
@@ -170,9 +191,25 @@ export function getSignatureHTML(
         </tr>`
       : '';
 
+  const linkedinValue = config.showLinkedin && data.linkedin ? data.linkedin : '';
+
+  // If LinkedIn is not provided, remove the LinkedIn link (but keep the website link)
+  if (config.showLinkedin && !linkedinValue) {
+    // Match the LinkedIn link tag with any whitespace/newlines and attributes
+    html = html.replace(/[\s\n]*<a\s+href="%%LinkedIn%%"[^>]*>\(LinkedIn\)<\/a>[\s\n]*/, '');
+  }
+
   html = html
     .replace(/{{DEPARTMENT_ROW}}/g, departmentRow)
     .replace(/%%Department%%/g, departmentValue);
+
+  // Only replace LinkedIn URL if it's provided, otherwise the link should already be removed
+  if (config.showLinkedin && linkedinValue) {
+    html = html.replace(/%%LinkedIn%%/g, linkedinValue);
+  } else {
+    // Remove any remaining LinkedIn placeholder if link wasn't removed by regex
+    html = html.replace(/%%LinkedIn%%/g, '');
+  }
 
   return html;
 }
@@ -192,6 +229,7 @@ export function getTemplateWithVariables(
         </tr>`
     : '';
 
-  return baseTemplate.replace(/{{DEPARTMENT_ROW}}/g, departmentPlaceholderRow);
+  return baseTemplate
+    .replace(/{{DEPARTMENT_ROW}}/g, departmentPlaceholderRow);
 }
 
