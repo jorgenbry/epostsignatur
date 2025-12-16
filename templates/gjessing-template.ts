@@ -38,8 +38,8 @@ export const gjessingTemplate = `<!DOCTYPE html>
         </tr>
         <tr>
             <td style="font-size: {{BODY_FONT_SIZE}}; padding: 24px 0 0 0; border: none;">
-                <a href="https://gjessing.law" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">(gjessing.law)</a>
-                <a href="%%LinkedIn%%" style="margin-left: 8px;font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">(LinkedIn)</a>
+                <a href="https://gjessing.law" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">▻ gjessing.law</a>
+                <a href="%%LinkedIn%%" style="margin-left: 8px;font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">▻ LinkedIn</a>
             </td>
         </tr>
     </table>
