@@ -102,6 +102,7 @@ const CLIENT_CONFIG = {
   gjessing: {
     logoUrl: '/logo/gjessing-logo.png',
     logoAlt: 'Logo for Gjessing',
+    trustedLogoUrl: 'https://gjessing.law/assets/static/external/gjessing-logo.png',
     logoWidth: 180,
     logoHeight: 35,
     textColor: '#000000',
