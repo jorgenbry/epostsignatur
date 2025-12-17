@@ -5,7 +5,9 @@ import styles from "./SignatureGenerator.module.scss";
 import {
   ClientKey,
   getClientConfig,
+  getClientTemplates,
   getSignatureHTML,
+  type ClientTemplate,
 } from "@/lib/signature-generator";
 
 type SignatureGeneratorProps = {
@@ -29,6 +31,10 @@ export function SignatureGenerator({
   placeholders = {},
 }: SignatureGeneratorProps) {
   const config = useMemo(() => getClientConfig(client), [client]);
+  const templates = useMemo<ClientTemplate[]>(
+    () => getClientTemplates(client),
+    [client]
+  );
   const departmentOptions = useMemo(
     () => config.departmentOptions ?? [],
     [config.departmentOptions]
@@ -64,12 +70,29 @@ export function SignatureGenerator({
       : ""
   );
   const [linkedin, setLinkedin] = useState("");
+  const [selectedTemplateId, setSelectedTemplateId] = useState(
+    templates[0]?.id ?? ""
+  );
+
+  useEffect(() => {
+    setSelectedTemplateId(templates[0]?.id ?? "");
+  }, [templates]);
   const [previewHTML, setPreviewHTML] = useState("");
 
   useEffect(() => {
     updatePreview();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name, position, email, phone, department, linkedin, client, mergedPlaceholders]);
+  }, [
+    name,
+    position,
+    email,
+    phone,
+    department,
+    linkedin,
+    client,
+    mergedPlaceholders,
+    selectedTemplateId,
+  ]);
 
   useEffect(() => {
     if (config.showDepartment && departmentOptions.length > 0) {
@@ -94,7 +117,8 @@ export function SignatureGenerator({
         department: department || mergedPlaceholders.department,
         linkedin: linkedin || mergedPlaceholders.linkedin,
       },
-      client
+      client,
+      selectedTemplateId
     );
     setPreviewHTML(html);
   };
@@ -109,7 +133,8 @@ export function SignatureGenerator({
         department,
         linkedin,
       },
-      client
+      client,
+      selectedTemplateId
     );
 
     try {
@@ -146,6 +171,28 @@ export function SignatureGenerator({
           <legend className={styles.visuallyHidden}>Din kontaktinformasjon</legend>
 
           <div className={styles.fieldList}>
+            {templates.length > 1 && (
+              <div>
+                <label className={styles.label} htmlFor="template-input">
+                  Mal
+                </label>
+                <div className={styles.selectWrapper}>
+                  <select
+                    id="template-input"
+                    name="template"
+                    value={selectedTemplateId}
+                    onChange={(e) => setSelectedTemplateId(e.target.value)}
+                    className={styles.select}
+                  >
+                    {templates.map(({ id, title }) => (
+                      <option key={id} value={id}>
+                        {title}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            )}
             <div>
               <label className={styles.label} htmlFor="name-input">
                 Navn *

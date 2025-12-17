@@ -1,3 +1,5 @@
+export const demoTemplateMeta = { id: 'demo-default', title: 'Standard' } as const;
+
 export const demoTemplate = `<!DOCTYPE html>
 <html lang="nb">
 <head>

@@ -1,3 +1,5 @@
+export const nasjonalbiblioteketTemplateMeta = { id: 'nasjonalbiblioteket-default', title: 'Standard' } as const;
+
 export const nasjonalbiblioteketTemplate = `<!DOCTYPE html>
 <html lang="nb">
 <head>

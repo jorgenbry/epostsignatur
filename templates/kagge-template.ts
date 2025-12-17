@@ -1,3 +1,5 @@
+export const kaggeTemplateMeta = { id: 'kagge-default', title: 'Standard' } as const;
+
 export const kaggeTemplate = `<!DOCTYPE html>
 <html lang="nb">
 <head>

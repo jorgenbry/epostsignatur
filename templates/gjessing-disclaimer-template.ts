@@ -1,6 +1,9 @@
-export const gjessingTemplateMeta = { id: 'gjessing-default', title: 'Standard' } as const;
+export const gjessingDisclaimerTemplateMeta = {
+  id: 'gjessing-disclaimer',
+  title: 'Med disclaimer',
+} as const;
 
-export const gjessingTemplate = `<!DOCTYPE html>
+export const gjessingDisclaimerTemplate = `<!DOCTYPE html>
 <html lang="nb">
 <head>
     <meta charset="UTF-8">
@@ -43,6 +46,11 @@ export const gjessingTemplate = `<!DOCTYPE html>
                 <a href="https://gjessing.law" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">▻ gjessing.law</a>
                 <a href="%%LinkedIn%%" style="margin-left: 8px;font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">▻ LinkedIn</a>
                 <a href="https://www.google.com/maps/place/Advokatfirmaet+GjessingReimers+AS/@59.9076294,10.7411679,601m/data=!3m1!1e3!4m6!3m5!1s0x46416e88db7bffff:0x4c6a137a4706d74c!8m2!3d59.9077569!4d10.7433397!16s%2Fg%2F11h54_twhp?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3M0gBUAM%3D" style="margin-left: 8px;font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">▻ Grev Wedels plass 7, Oslo</a>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size: 12px; color: #4a4a4a; padding: 32px 0 0 0; border: none; line-height: 1.5;">
+                This message is confidential and intended to be for the addressee only. If you have received this message in error, please notify us immediately and destroy the original message and all copies.
             </td>
         </tr>
     </table>

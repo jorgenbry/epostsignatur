@@ -1,12 +1,28 @@
-import { demoTemplate } from '@/templates/demo-template';
-import { kaggeTemplate } from '@/templates/kagge-template';
-import { nasjonalbiblioteketTemplate } from '@/templates/nasjonalbiblioteket-template';
-import { litteraturhusetTemplate } from '@/templates/litteraturhuset-template';
-import { gjessingTemplate } from '@/templates/gjessing-template';
+import { demoTemplate, demoTemplateMeta } from '@/templates/demo-template';
+import { kaggeTemplate, kaggeTemplateMeta } from '@/templates/kagge-template';
+import {
+  nasjonalbiblioteketTemplate,
+  nasjonalbiblioteketTemplateMeta,
+} from '@/templates/nasjonalbiblioteket-template';
+import {
+  litteraturhusetTemplate,
+  litteraturhusetTemplateMeta,
+} from '@/templates/litteraturhuset-template';
+import { gjessingTemplate, gjessingTemplateMeta } from '@/templates/gjessing-template';
+import {
+  gjessingDisclaimerTemplate,
+  gjessingDisclaimerTemplateMeta,
+} from '@/templates/gjessing-disclaimer-template';
 
 type DepartmentOption = {
   label: string;
   value: string;
+};
+
+export type ClientTemplate = {
+  id: string;
+  title: string;
+  html: string;
 };
 
 type ClientConfig = {
@@ -106,7 +122,7 @@ const CLIENT_CONFIG = {
     logoWidth: 180,
     logoHeight: 35,
     textColor: '#000000',
-    linkColor: '#223409',
+    linkColor: '#000000',
     nameFontSize: '16px',
     bodyFontSize: '14px',
     showDepartment: false,
@@ -116,19 +132,27 @@ const CLIENT_CONFIG = {
   // Add more clients here as needed
 } satisfies Record<string, ClientConfig>;
 
-const CLIENT_TEMPLATES = {
-  demo: demoTemplate,
-  kagge: kaggeTemplate,
-  nasjonalbiblioteket: nasjonalbiblioteketTemplate,
-  litteraturhuset: litteraturhusetTemplate,
-  gjessing: gjessingTemplate,
-  // Add more client templates here as needed
-} as const;
+const CLIENT_TEMPLATES: Record<keyof typeof CLIENT_CONFIG, ClientTemplate[]> = {
+  demo: [{ ...demoTemplateMeta, html: demoTemplate }],
+  kagge: [{ ...kaggeTemplateMeta, html: kaggeTemplate }],
+  nasjonalbiblioteket: [
+    { ...nasjonalbiblioteketTemplateMeta, html: nasjonalbiblioteketTemplate },
+  ],
+  litteraturhuset: [{ ...litteraturhusetTemplateMeta, html: litteraturhusetTemplate }],
+  gjessing: [
+    { ...gjessingTemplateMeta, html: gjessingTemplate },
+    { ...gjessingDisclaimerTemplateMeta, html: gjessingDisclaimerTemplate },
+  ],
+};
 
 export type ClientKey = keyof typeof CLIENT_CONFIG;
 
 export function getClientConfig(client: ClientKey) {
   return CLIENT_CONFIG[client];
+}
+
+export function getClientTemplates(client: ClientKey): ClientTemplate[] {
+  return CLIENT_TEMPLATES[client] ?? [];
 }
 
 type SignatureData = {
@@ -141,11 +165,14 @@ type SignatureData = {
 };
 
 // Get the template HTML
-function getTemplate(client: keyof typeof CLIENT_CONFIG = 'kagge'): string {
+function getTemplate(client: ClientKey = 'kagge', templateId?: string): string {
   const config = CLIENT_CONFIG[client];
-  const template = CLIENT_TEMPLATES[client];
+  const templates = CLIENT_TEMPLATES[client] ?? [];
+  const templateEntry =
+    (templateId ? templates.find((tpl) => tpl.id === templateId) : undefined) ||
+    templates[0];
 
-  if (!config || !template) {
+  if (!config || !templateEntry) {
     throw new Error(`Template configuration missing for client "${client}"`);
   }
 
@@ -154,7 +181,7 @@ function getTemplate(client: keyof typeof CLIENT_CONFIG = 'kagge'): string {
   const logoUrl = (config as ClientConfig).trustedLogoUrl || config.logoUrl;
   const logoHeight = config.logoHeight || Math.round(config.logoWidth * 0.33); // Default aspect ratio
 
-  return template
+  return templateEntry.html
     .replace(/{{LOGO_URL}}/g, logoUrl)
     .replace(/{{LOGO_ALT}}/g, config.logoAlt)
     .replace(/{{LOGO_WIDTH}}/g, String(config.logoWidth))
@@ -168,10 +195,11 @@ function getTemplate(client: keyof typeof CLIENT_CONFIG = 'kagge'): string {
 // Replace template variables with actual data
 export function getSignatureHTML(
   data: SignatureData,
-  client: ClientKey = 'kagge'
+  client: ClientKey = 'kagge',
+  templateId?: string
 ): string {
   const config = CLIENT_CONFIG[client];
-  const template = getTemplate(client);
+  const template = getTemplate(client, templateId);
   
   // Replace Active Directory style variables
   let html = template
@@ -217,10 +245,11 @@ export function getSignatureHTML(
 
 // Export template with variables for Active Directory
 export function getTemplateWithVariables(
-  client: keyof typeof CLIENT_CONFIG = 'kagge'
+  client: ClientKey = 'kagge',
+  templateId?: string
 ): string {
   const config = CLIENT_CONFIG[client];
-  const baseTemplate = getTemplate(client);
+  const baseTemplate = getTemplate(client, templateId);
 
   const departmentPlaceholderRow = config.showDepartment
     ? `<tr>

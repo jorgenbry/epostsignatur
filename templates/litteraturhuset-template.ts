@@ -1,3 +1,5 @@
+export const litteraturhusetTemplateMeta = { id: 'litteraturhuset-default', title: 'Standard' } as const;
+
 export const litteraturhusetTemplate = `<!DOCTYPE html>
 <html lang="nb">
 <head>
