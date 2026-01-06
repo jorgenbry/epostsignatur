@@ -195,18 +195,49 @@ function getTemplate(client: ClientKey = 'kagge', templateId?: string): string {
 // Break up email pattern to prevent Mail.app auto-detection
 function breakEmailPattern(email: string): string {
   if (!email) return '';
-  // Insert zero-width space after @ symbol to break the pattern
-  // This prevents Mail.app from recognizing it as an email address
-  return email.replace('@', '@\u200B');
+  // Break up the email pattern more aggressively:
+  // 1. Insert zero-width space after @ symbol
+  // 2. Insert zero-width space before the TLD (.no, .com, etc.)
+  // 3. Insert zero-width space in the domain name to break "kagge.no" pattern
+  let broken = email.replace('@', '@\u200B');
+  // Break before TLD (e.g., .no, .com, .org) - this prevents "kagge.no" from being detected
+  broken = broken.replace(/\.([a-z]{2,4})$/, '.\u200B$1');
+  // Also break the domain name itself (e.g., "kagge" -> "kag\u200Bge")
+  // Find the @ symbol and the dot before TLD
+  const atIndex = broken.indexOf('@\u200B');
+  if (atIndex >= 0) {
+    const domainStart = atIndex + 2; // Skip @ and zero-width space
+    const dotIndex = broken.lastIndexOf('.');
+    if (dotIndex > domainStart) {
+      const domainName = broken.substring(domainStart, dotIndex);
+      if (domainName.length > 2) {
+        // Insert zero-width space in the middle of domain name
+        const midPoint = Math.floor(domainName.length / 2);
+        const brokenDomain = domainName.substring(0, midPoint) + '\u200B' + domainName.substring(midPoint);
+        broken = broken.substring(0, domainStart) + brokenDomain + broken.substring(dotIndex);
+      }
+    }
+  }
+  return broken;
 }
 
 // Break up phone pattern to prevent Mail.app auto-detection
 function breakPhonePattern(phone: string): string {
   if (!phone) return '';
-  // Insert zero-width space after the first digit group to break the pattern
+  // Break up phone number more aggressively by inserting zero-width spaces
+  // between digit groups and within digit sequences
   // This prevents Mail.app from recognizing it as a phone number
-  // Match common phone patterns like +47 123 45 678 or 123 45 678
-  return phone.replace(/(\d{2,3})\s/, '$1\u200B ');
+  let broken = phone;
+  // Insert zero-width space after country code if present (+47, +1, etc.)
+  broken = broken.replace(/(\+\d{1,3})\s/, '$1\u200B ');
+  // Insert zero-width space between digit groups (e.g., 123 45 678)
+  broken = broken.replace(/(\d{2,3})\s(\d)/g, '$1\u200B $2');
+  // Insert zero-width space in the middle of longer digit sequences without spaces
+  broken = broken.replace(/(\d{4,})/g, (match) => {
+    const midPoint = Math.floor(match.length / 2);
+    return match.substring(0, midPoint) + '\u200B' + match.substring(midPoint);
+  });
+  return broken;
 }
 
 // Replace template variables with actual data
