@@ -30,13 +30,13 @@ export const kaggeTemplate = `<!DOCTYPE html>
             </td>
         </tr>
         <tr>
-            <td style="font-size: {{BODY_FONT_SIZE}}; padding: 0; border: none; color: {{LINK_COLOR}} !important;">
-                <a href="mailto:%%Email%%" color="{{LINK_COLOR}}" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}} !important; -webkit-text-fill-color: {{LINK_COLOR}} !important; text-decoration: none !important; text-decoration-color: {{LINK_COLOR}} !important; mso-color-alt: {{LINK_COLOR}}; -webkit-tap-highlight-color: {{LINK_COLOR}};"><span style="color: {{LINK_COLOR}} !important; -webkit-text-fill-color: {{LINK_COLOR}} !important;">%%Email%%</span></a>
+            <td style="font-size: {{BODY_FONT_SIZE}}; padding: 0; border: none; color: {{LINK_COLOR}} !important;" x-apple-data-detectors="false">
+                <span style="color: {{LINK_COLOR}} !important; -webkit-text-fill-color: {{LINK_COLOR}} !important;" x-apple-data-detectors="false">%%Email%%</span>
             </td>
         </tr>
         <tr>
-            <td style="font-size: {{BODY_FONT_SIZE}}; padding: 4px 0 0 0; border: none; color: {{LINK_COLOR}} !important;">
-                <a href="tel:%%PhoneNumber%%" color="{{LINK_COLOR}}" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}} !important; -webkit-text-fill-color: {{LINK_COLOR}} !important; text-decoration: none !important; text-decoration-color: {{LINK_COLOR}} !important; mso-color-alt: {{LINK_COLOR}}; -webkit-tap-highlight-color: {{LINK_COLOR}};"><span style="color: {{LINK_COLOR}} !important; -webkit-text-fill-color: {{LINK_COLOR}} !important;">%%PhoneNumber%%</span></a>
+            <td style="font-size: {{BODY_FONT_SIZE}}; padding: 4px 0 0 0; border: none; color: {{LINK_COLOR}} !important;" x-apple-data-detectors="false">
+                <span style="color: {{LINK_COLOR}} !important; -webkit-text-fill-color: {{LINK_COLOR}} !important;" x-apple-data-detectors="false">%%PhoneNumber%%</span>
             </td>
         </tr>
     </table>
