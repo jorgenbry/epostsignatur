@@ -7,8 +7,8 @@ export const kaggeTemplate = `<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no, email=no, address=no, date=no">
 </head>
-<body link="{{LINK_COLOR}}" vlink="{{LINK_COLOR}}" style="margin: 0; padding: 0;">
-    <table cellpadding="0" cellspacing="0" role="presentation" style="width: auto; max-width: 500px; border-spacing: 0; margin: 0; padding: 0; border: none; font-family: Arial, sans-serif; color: {{TEXT_COLOR}}; font-size: {{BODY_FONT_SIZE}};">
+<body link="{{LINK_COLOR}}" vlink="{{LINK_COLOR}}" style="margin: 0; padding: 0;" x-apple-data-detectors="false">
+    <table cellpadding="0" cellspacing="0" role="presentation" style="width: auto; max-width: 500px; border-spacing: 0; margin: 0; padding: 0; border: none; font-family: Arial, sans-serif; color: {{TEXT_COLOR}}; font-size: {{BODY_FONT_SIZE}};" x-apple-data-detectors="false">
         <tr>
             <td style="font-size: {{NAME_FONT_SIZE}}; font-weight: bold; padding: 16px 0 4px 0; border: none;">
                 %%DisplayName%%
@@ -30,13 +30,13 @@ export const kaggeTemplate = `<!DOCTYPE html>
             </td>
         </tr>
         <tr>
-            <td style="font-size: {{BODY_FONT_SIZE}}; padding: 0; border: none; color: {{LINK_COLOR}} !important;" x-apple-data-detectors="false">
-                <span style="color: {{LINK_COLOR}} !important; -webkit-text-fill-color: {{LINK_COLOR}} !important;" x-apple-data-detectors="false">%%Email%%</span>
+            <td style="font-size: {{BODY_FONT_SIZE}}; padding: 0; border: none; color: {{LINK_COLOR}} !important;" x-apple-data-detectors="false" data-detection="false">
+                <span style="color: {{LINK_COLOR}} !important; -webkit-text-fill-color: {{LINK_COLOR}} !important;" x-apple-data-detectors="false" data-detection="false">%%Email%%</span>
             </td>
         </tr>
         <tr>
-            <td style="font-size: {{BODY_FONT_SIZE}}; padding: 4px 0 0 0; border: none; color: {{LINK_COLOR}} !important;" x-apple-data-detectors="false">
-                <span style="color: {{LINK_COLOR}} !important; -webkit-text-fill-color: {{LINK_COLOR}} !important;" x-apple-data-detectors="false">%%PhoneNumber%%</span>
+            <td style="font-size: {{BODY_FONT_SIZE}}; padding: 4px 0 0 0; border: none; color: {{LINK_COLOR}} !important;" x-apple-data-detectors="false" data-detection="false">
+                <span style="color: {{LINK_COLOR}} !important; -webkit-text-fill-color: {{LINK_COLOR}} !important;" x-apple-data-detectors="false" data-detection="false">%%PhoneNumber%%</span>
             </td>
         </tr>
     </table>

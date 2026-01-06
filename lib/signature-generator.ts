@@ -192,6 +192,23 @@ function getTemplate(client: ClientKey = 'kagge', templateId?: string): string {
     .replace(/{{BODY_FONT_SIZE}}/g, config.bodyFontSize);
 }
 
+// Break up email pattern to prevent Mail.app auto-detection
+function breakEmailPattern(email: string): string {
+  if (!email) return '';
+  // Insert zero-width space after @ symbol to break the pattern
+  // This prevents Mail.app from recognizing it as an email address
+  return email.replace('@', '@\u200B');
+}
+
+// Break up phone pattern to prevent Mail.app auto-detection
+function breakPhonePattern(phone: string): string {
+  if (!phone) return '';
+  // Insert zero-width space after the first digit group to break the pattern
+  // This prevents Mail.app from recognizing it as a phone number
+  // Match common phone patterns like +47 123 45 678 or 123 45 678
+  return phone.replace(/(\d{2,3})\s/, '$1\u200B ');
+}
+
 // Replace template variables with actual data
 export function getSignatureHTML(
   data: SignatureData,
@@ -201,12 +218,16 @@ export function getSignatureHTML(
   const config = CLIENT_CONFIG[client];
   const template = getTemplate(client, templateId);
   
+  // For kagge template, break up email and phone patterns to prevent Mail.app detection
+  const emailValue = client === 'kagge' ? breakEmailPattern(data.email || '') : (data.email || '');
+  const phoneValue = client === 'kagge' ? breakPhonePattern(data.phone || '') : (data.phone || '');
+  
   // Replace Active Directory style variables
   let html = template
     .replace(/%%DisplayName%%/g, data.name || '')
     .replace(/%%Title%%/g, data.position || '')
-    .replace(/%%Email%%/g, data.email || '')
-    .replace(/%%PhoneNumber%%/g, data.phone || '');
+    .replace(/%%Email%%/g, emailValue)
+    .replace(/%%PhoneNumber%%/g, phoneValue);
 
   const departmentValue =
     config.showDepartment && data.department ? data.department : '';
