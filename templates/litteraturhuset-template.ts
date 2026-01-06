@@ -35,20 +35,20 @@ export const litteraturhusetTemplate = `<!DOCTYPE html>
         </tr>
         <tr>
             <td style="font-size: {{BODY_FONT_SIZE}}; padding: 0; border: none;">
-                <a href="mailto:%%Email%%" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">%%Email%%</a>
+                <a href="mailto:%%Email%%" color="{{LINK_COLOR}}" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}} !important; text-decoration: none; mso-color-alt: {{LINK_COLOR}};"><span style="color: {{LINK_COLOR}} !important;">%%Email%%</span></a>
             </td>
         </tr>
         <tr>
             <td style="font-size: {{BODY_FONT_SIZE}}; padding: 4px 0 0 0; border: none;">
-                <a href="tel:%%PhoneNumber%%" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">%%PhoneNumber%%</a>
+                <a href="tel:%%PhoneNumber%%" color="{{LINK_COLOR}}" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}} !important; text-decoration: none; mso-color-alt: {{LINK_COLOR}};"><span style="color: {{LINK_COLOR}} !important;">%%PhoneNumber%%</span></a>
             </td>
         </tr>
         <tr>
             <td style="padding: 16px 0 0 0; border: none;">
                 <div style="margin: 0; padding: 4px 0 0 0;">
-                    <a href="https://www.litteraturhuset.no?utm_source=email-signature" style="color:{{LINK_COLOR}};text-decoration:none;border-style:solid;border-width:1px;border-color:{{LINK_COLOR}};border-radius:6px;padding-right:10px;padding-left:10px;padding-bottom:5px;padding-top:5px;display:inline-block;margin-right:4px;font-size:{{BODY_FONT_SIZE}};line-height:1.4em" target="_blank">Litteraturhuset.no</a>
-                    <a href="https://www.litteraturhuset.no/nb/nyhetsbrev?utm_source=email-signature" style="color:{{LINK_COLOR}};text-decoration:none;border-style:solid;border-width:1px;border-color:{{LINK_COLOR}};border-radius:6px;padding-right:10px;padding-left:10px;padding-bottom:5px;padding-top:5px;display:inline-block;margin-right:4px;font-size:{{BODY_FONT_SIZE}};line-height:1.4em" target="_blank">Nyhetsbrev</a>
-                    <a href="https://www.litteraturhuset.no/nb/podkaster?utm_source=email-signature" style="color:{{LINK_COLOR}};text-decoration:none;border-style:solid;border-width:1px;border-color:{{LINK_COLOR}};border-radius:6px;padding-right:10px;padding-left:10px;padding-bottom:5px;padding-top:5px;display:inline-block;font-size:{{BODY_FONT_SIZE}};line-height:1.4em" target="_blank">Podkaster</a>
+                    <a href="https://www.litteraturhuset.no?utm_source=email-signature" color="{{LINK_COLOR}}" style="color:{{LINK_COLOR}} !important;text-decoration:none;border-style:solid;border-width:1px;border-color:{{LINK_COLOR}};border-radius:6px;padding-right:10px;padding-left:10px;padding-bottom:5px;padding-top:5px;display:inline-block;margin-right:4px;font-size:{{BODY_FONT_SIZE}};line-height:1.4em;mso-color-alt:{{LINK_COLOR}}" target="_blank"><span style="color:{{LINK_COLOR}} !important;">Litteraturhuset.no</span></a>
+                    <a href="https://www.litteraturhuset.no/nb/nyhetsbrev?utm_source=email-signature" color="{{LINK_COLOR}}" style="color:{{LINK_COLOR}} !important;text-decoration:none;border-style:solid;border-width:1px;border-color:{{LINK_COLOR}};border-radius:6px;padding-right:10px;padding-left:10px;padding-bottom:5px;padding-top:5px;display:inline-block;margin-right:4px;font-size:{{BODY_FONT_SIZE}};line-height:1.4em;mso-color-alt:{{LINK_COLOR}}" target="_blank"><span style="color:{{LINK_COLOR}} !important;">Nyhetsbrev</span></a>
+                    <a href="https://www.litteraturhuset.no/nb/podkaster?utm_source=email-signature" color="{{LINK_COLOR}}" style="color:{{LINK_COLOR}} !important;text-decoration:none;border-style:solid;border-width:1px;border-color:{{LINK_COLOR}};border-radius:6px;padding-right:10px;padding-left:10px;padding-bottom:5px;padding-top:5px;display:inline-block;font-size:{{BODY_FONT_SIZE}};line-height:1.4em;mso-color-alt:{{LINK_COLOR}}" target="_blank"><span style="color:{{LINK_COLOR}} !important;">Podkaster</span></a>
                 </div>
             </td>
         </tr>

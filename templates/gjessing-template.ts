@@ -20,12 +20,12 @@ export const gjessingTemplate = `<!DOCTYPE html>
         </tr>
         <tr>
             <td style="font-size: {{BODY_FONT_SIZE}}; padding: 0; border: none;">
-                <a href="mailto:%%Email%%" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">%%Email%%</a>
+                <a href="mailto:%%Email%%" color="{{LINK_COLOR}}" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}} !important; text-decoration: none; mso-color-alt: {{LINK_COLOR}};"><span style="color: {{LINK_COLOR}} !important;">%%Email%%</span></a>
             </td>
         </tr>
         <tr>
             <td style="font-size: {{BODY_FONT_SIZE}}; padding: 4px 0 0 0; border: none;">
-                <a href="tel:%%PhoneNumber%%" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">%%PhoneNumber%%</a>
+                <a href="tel:%%PhoneNumber%%" color="{{LINK_COLOR}}" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}} !important; text-decoration: none; mso-color-alt: {{LINK_COLOR}};"><span style="color: {{LINK_COLOR}} !important;">%%PhoneNumber%%</span></a>
             </td>
         </tr>
         <tr>
@@ -40,9 +40,9 @@ export const gjessingTemplate = `<!DOCTYPE html>
         </tr>
         <tr>
             <td style="font-size: {{BODY_FONT_SIZE}}; padding: 0; border: none;">
-                <a href="https://gjessing.law" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">▻ gjessing.law</a>
-                <a href="%%LinkedIn%%" style="margin-left: 8px;font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">▻ LinkedIn</a>
-                <a href="https://www.google.com/maps/place/Advokatfirmaet+GjessingReimers+AS/@59.9076294,10.7411679,601m/data=!3m1!1e3!4m6!3m5!1s0x46416e88db7bffff:0x4c6a137a4706d74c!8m2!3d59.9077569!4d10.7433397!16s%2Fg%2F11h54_twhp?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3M0gBUAM%3D" style="margin-left: 8px;font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">▻ Grev Wedels plass 7, Oslo</a>
+                <a href="https://gjessing.law" color="{{LINK_COLOR}}" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}} !important; text-decoration: none; mso-color-alt: {{LINK_COLOR}};"><span style="color: {{LINK_COLOR}} !important;">▻ gjessing.law</span></a>
+                <a href="%%LinkedIn%%" color="{{LINK_COLOR}}" style="margin-left: 8px;font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}} !important; text-decoration: none; mso-color-alt: {{LINK_COLOR}};"><span style="color: {{LINK_COLOR}} !important;">▻ LinkedIn</span></a>
+                <a href="https://www.google.com/maps/place/Advokatfirmaet+GjessingReimers+AS/@59.9076294,10.7411679,601m/data=!3m1!1e3!4m6!3m5!1s0x46416e88db7bffff:0x4c6a137a4706d74c!8m2!3d59.9077569!4d10.7433397!16s%2Fg%2F11h54_twhp?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3M0gBUAM%3D" color="{{LINK_COLOR}}" style="margin-left: 8px;font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}} !important; text-decoration: none; mso-color-alt: {{LINK_COLOR}};"><span style="color: {{LINK_COLOR}} !important;">▻ Grev Wedels plass 7, Oslo</span></a>
             </td>
         </tr>
     </table>

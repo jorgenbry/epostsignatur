@@ -30,12 +30,12 @@ export const demoTemplate = `<!DOCTYPE html>
         </tr>
         <tr>
             <td style="font-size: {{BODY_FONT_SIZE}}; padding: 0; border: none;">
-                <a href="mailto:%%Email%%" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">%%Email%%</a>
+                <a href="mailto:%%Email%%" color="{{LINK_COLOR}}" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}} !important; text-decoration: none; mso-color-alt: {{LINK_COLOR}};"><span style="color: {{LINK_COLOR}} !important;">%%Email%%</span></a>
             </td>
         </tr>
         <tr>
             <td style="font-size: {{BODY_FONT_SIZE}}; padding: 4px 0 0 0; border: none;">
-                <a href="tel:%%PhoneNumber%%" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}}; text-decoration: none;">%%PhoneNumber%%</a>
+                <a href="tel:%%PhoneNumber%%" color="{{LINK_COLOR}}" style="font-size: {{BODY_FONT_SIZE}}; color: {{LINK_COLOR}} !important; text-decoration: none; mso-color-alt: {{LINK_COLOR}};"><span style="color: {{LINK_COLOR}} !important;">%%PhoneNumber%%</span></a>
             </td>
         </tr>
     </table>
