@@ -249,9 +249,9 @@ export function getSignatureHTML(
   const config = CLIENT_CONFIG[client];
   const template = getTemplate(client, templateId);
   
-  // For kagge template, break up email and phone patterns to prevent Mail.app detection
-  const emailValue = client === 'kagge' ? breakEmailPattern(data.email || '') : (data.email || '');
-  const phoneValue = client === 'kagge' ? breakPhonePattern(data.phone || '') : (data.phone || '');
+  // Break up email and phone patterns to prevent Mail.app detection for all templates
+  const emailValue = breakEmailPattern(data.email || '');
+  const phoneValue = breakPhonePattern(data.phone || '');
   
   // Replace Active Directory style variables
   let html = template
