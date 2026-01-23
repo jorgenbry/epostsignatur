@@ -116,7 +116,7 @@ const CLIENT_CONFIG = {
     // trustedLogoUrl: 'https://litteraturhuset.no/logo/litteraturhuset-logo.png',
   },
   gjessing: {
-    logoUrl: '/logo/gjessing-logo.png',
+    logoUrl: 'https://signatur.smuss.studio/logo/gjessing-logo.png',
     logoAlt: 'Logo for Gjessing',
     trustedLogoUrl: 'https://gjessing.law/assets/static/external/gjessing-logo.png',
     logoWidth: 180,

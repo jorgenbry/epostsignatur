@@ -39,6 +39,7 @@ export const gjessingTemplate = `<!DOCTYPE html>
                      width="{{LOGO_WIDTH}}" 
                      height="{{LOGO_HEIGHT}}" 
                      border="0"
+                     role="presentation"
                      style="display: block !important; border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: {{LOGO_WIDTH}}px; width: {{LOGO_WIDTH}}px !important; height: {{LOGO_HEIGHT}}px !important; vertical-align: top; mso-line-height-rule: exactly;">
             </td>
         </tr>
