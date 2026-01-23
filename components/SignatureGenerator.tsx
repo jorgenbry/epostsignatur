@@ -300,9 +300,10 @@ export function SignatureGenerator({
 
             {config.showLinkedin && (
               <div>
-                <label className={styles.label} htmlFor="linkedin-input" title="Hvis feltet står tomt, går lenken til selskapets LinkedIn-side">
+                <label className={styles.label} htmlFor="linkedin-input">
                   LinkedIn-adresse
                 </label>
+                <p className={styles.tooltip}>Hvis feltet står tomt, går lenken til selskapets LinkedIn-side</p>
                 <input
                   id="linkedin-input"
                   type="url"
@@ -312,7 +313,6 @@ export function SignatureGenerator({
                   placeholder={mergedPlaceholders.linkedin || "https://linkedin.com/in/dittnavn"}
                   autoComplete="url"
                   className={styles.input}
-                  title="Hvis feltet står tomt, går lenken til selskapets LinkedIn-side"
                 />
               </div>
             )}

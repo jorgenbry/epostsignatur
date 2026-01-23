@@ -60,6 +60,13 @@
   color: #333333;
 }
 
+.tooltip {
+  font-size: 0.75rem;
+  color: var(--color-muted-text);
+  margin: -0.25rem 0 0.5rem 0;
+  font-weight: 400;
+}
+
 .input,
 .select {
   width: 100%;

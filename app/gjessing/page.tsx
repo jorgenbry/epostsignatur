@@ -18,7 +18,7 @@ export default function GjessingPage() {
       placeholders={{
         email: 'navn@gjessing.law',
         position: 'Din stilling',
-        phone: '+47 12 34 56 78',
+        phone: '+47 123 45 678',
         linkedin: 'https://linkedin.com/in/dittnavn',
       }}
     />
