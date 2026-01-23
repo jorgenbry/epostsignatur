@@ -39,6 +39,8 @@ type ClientConfig = {
   showLinkedin: boolean;
   // Alternative logo URL for hosting on company domain (more trusted by Outlook)
   trustedLogoUrl?: string;
+  // Company LinkedIn URL to use as fallback when personal LinkedIn is not provided
+  companyLinkedinUrl?: string;
 };
 
 // Configuration for different clients
@@ -128,6 +130,7 @@ const CLIENT_CONFIG = {
     showDepartment: false,
     departmentOptions: [],
     showLinkedin: true,
+    companyLinkedinUrl: 'https://www.linkedin.com/company/gjessing/',
   },
   // Add more clients here as needed
 } satisfies Record<string, ClientConfig>;
@@ -272,9 +275,12 @@ export function getSignatureHTML(
         </tr>`
       : '';
 
-  const linkedinValue = config.showLinkedin && data.linkedin ? data.linkedin : '';
+  // Use personal LinkedIn URL if provided, otherwise fall back to company LinkedIn URL
+  const linkedinValue = config.showLinkedin
+    ? data.linkedin || config.companyLinkedinUrl || ''
+    : '';
 
-  // If LinkedIn is not provided, remove the LinkedIn link (but keep the website link)
+  // If LinkedIn is not provided and no company LinkedIn URL, remove the LinkedIn link (but keep the website link)
   if (config.showLinkedin && !linkedinValue) {
     // Match the LinkedIn link tag with any whitespace/newlines and attributes
     html = html.replace(/[\s\n]*<a\s+href="%%LinkedIn%%"[^>]*>\(LinkedIn\)<\/a>[\s\n]*/, '');
@@ -284,7 +290,7 @@ export function getSignatureHTML(
     .replace(/{{DEPARTMENT_ROW}}/g, departmentRow)
     .replace(/%%Department%%/g, departmentValue);
 
-  // Only replace LinkedIn URL if it's provided, otherwise the link should already be removed
+  // Replace LinkedIn URL if it's provided (personal or company)
   if (config.showLinkedin && linkedinValue) {
     html = html.replace(/%%LinkedIn%%/g, linkedinValue);
   } else {
