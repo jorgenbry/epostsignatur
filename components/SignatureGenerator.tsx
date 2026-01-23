@@ -101,6 +101,7 @@ export function SignatureGenerator({
     department,
     linkedin,
     client,
+    config,
     mergedPlaceholders,
     selectedTemplateId,
   ]);
@@ -126,7 +127,7 @@ export function SignatureGenerator({
         email: email || mergedPlaceholders.email,
         phone: phone || mergedPlaceholders.phone,
         department: department || mergedPlaceholders.department,
-        linkedin: linkedin || mergedPlaceholders.linkedin,
+        linkedin: linkedin || '', // Use empty string to allow company LinkedIn fallback
       },
       client,
       selectedTemplateId
@@ -142,7 +143,7 @@ export function SignatureGenerator({
         email,
         phone,
         department,
-        linkedin,
+        linkedin: linkedin || '', // Use empty string to allow company LinkedIn fallback
       },
       client,
       selectedTemplateId
