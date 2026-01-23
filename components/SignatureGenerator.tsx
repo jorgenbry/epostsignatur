@@ -80,6 +80,17 @@ export function SignatureGenerator({
   const [previewHTML, setPreviewHTML] = useState("");
 
   useEffect(() => {
+    console.log(
+      '%cE-postsignatur Generator',
+      'color: #0066cc; font-size: 14px; font-weight: bold;',
+      '\nVersion deployed:',
+      new Date().toISOString().split('T')[0],
+      '\nBuild time:',
+      new Date().toLocaleString('nb-NO')
+    );
+  }, []);
+
+  useEffect(() => {
     updatePreview();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
