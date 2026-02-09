@@ -21,6 +21,7 @@ type SignatureGeneratorProps = {
     phone?: string;
     department?: string;
     linkedin?: string;
+    customLink?: string;
   };
 };
 
@@ -47,6 +48,7 @@ export function SignatureGenerator({
       phone: placeholders.phone ?? "+47 123 45 678",
       department: config.showDepartment ? placeholders.department ?? "" : "",
       linkedin: config.showLinkedin ? placeholders.linkedin ?? "" : "",
+      customLink: config.customLinkLabel ? placeholders.customLink ?? "" : "",
     }),
     [
       placeholders.name,
@@ -55,8 +57,10 @@ export function SignatureGenerator({
       placeholders.phone,
       placeholders.department,
       placeholders.linkedin,
+      placeholders.customLink,
       config.showDepartment,
       config.showLinkedin,
+      config.customLinkLabel,
     ]
   );
 
@@ -70,6 +74,7 @@ export function SignatureGenerator({
       : ""
   );
   const [linkedin, setLinkedin] = useState("");
+  const [customLink, setCustomLink] = useState("");
   const [selectedTemplateId, setSelectedTemplateId] = useState(
     templates[0]?.id ?? ""
   );
@@ -100,6 +105,7 @@ export function SignatureGenerator({
     phone,
     department,
     linkedin,
+    customLink,
     client,
     config,
     mergedPlaceholders,
@@ -128,6 +134,7 @@ export function SignatureGenerator({
         phone: phone || mergedPlaceholders.phone,
         department: department || mergedPlaceholders.department,
         linkedin: linkedin || '', // Use empty string to allow company LinkedIn fallback
+        customLink: customLink || '',
       },
       client,
       selectedTemplateId
@@ -144,6 +151,7 @@ export function SignatureGenerator({
         phone,
         department,
         linkedin: linkedin || '', // Use empty string to allow company LinkedIn fallback
+        customLink: customLink || '',
       },
       client,
       selectedTemplateId
@@ -312,6 +320,24 @@ export function SignatureGenerator({
                   value={linkedin}
                   onChange={(e) => setLinkedin(e.target.value)}
                   placeholder={mergedPlaceholders.linkedin || "https://linkedin.com/in/dittnavn"}
+                  autoComplete="url"
+                  className={styles.input}
+                />
+              </div>
+            )}
+
+            {config.customLinkLabel && (
+              <div>
+                <label className={styles.label} htmlFor="custom-link-input">
+                  {config.customLinkLabel}
+                </label>
+                <input
+                  id="custom-link-input"
+                  type="url"
+                  name="customLink"
+                  value={customLink}
+                  onChange={(e) => setCustomLink(e.target.value)}
+                  placeholder={mergedPlaceholders.customLink || `https://example.com`}
                   autoComplete="url"
                   className={styles.input}
                 />
