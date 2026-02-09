@@ -303,14 +303,15 @@ export function getSignatureHTML(
   }
 
   // Handle custom link - only show if customLinkLabel is configured and customLink is provided
-  const customLinkValue = config.customLinkLabel && data.customLink ? data.customLink : '';
-  if (customLinkValue) {
+  const customLinkLabel = 'customLinkLabel' in config ? config.customLinkLabel : undefined;
+  const customLinkValue = customLinkLabel && data.customLink ? data.customLink : '';
+  if (customLinkValue && customLinkLabel) {
     // Generate custom link HTML - need to match the style of the template
     // For gjessing templates, we need to check which template style to use
     const isDisclaimerTemplate = templateId === 'gjessing-disclaimer';
     const customLinkHTML = isDisclaimerTemplate
-      ? `<a href="${customLinkValue}" color="${config.linkColor}" style="margin-left: 8px;font-size: ${config.bodyFontSize}; color: ${config.linkColor} !important; -webkit-text-fill-color: ${config.linkColor} !important; text-decoration: none !important; text-decoration-color: ${config.linkColor} !important; mso-color-alt: ${config.linkColor}; -webkit-tap-highlight-color: ${config.linkColor};"><span style="color: ${config.linkColor} !important; -webkit-text-fill-color: ${config.linkColor} !important;">${config.customLinkLabel}</span></a>`
-      : `<a href="${customLinkValue}" style="font-family: Helvetica, Arial, sans-serif !important; margin-left: 8px; font-size: ${config.bodyFontSize}; color: ${config.linkColor} !important; text-decoration: none !important; mso-color-alt: ${config.linkColor}; mso-style-textfill-fill-color: ${config.linkColor}; mso-style-textfill-fill-alpha: 100%;"><span style="color: ${config.linkColor} !important; font-family: Helvetica, Arial, sans-serif !important; mso-font-alt: 'Helvetica';">${config.customLinkLabel}</span></a>`;
+      ? `<a href="${customLinkValue}" color="${config.linkColor}" style="margin-left: 8px;font-size: ${config.bodyFontSize}; color: ${config.linkColor} !important; -webkit-text-fill-color: ${config.linkColor} !important; text-decoration: none !important; text-decoration-color: ${config.linkColor} !important; mso-color-alt: ${config.linkColor}; -webkit-tap-highlight-color: ${config.linkColor};"><span style="color: ${config.linkColor} !important; -webkit-text-fill-color: ${config.linkColor} !important;">${customLinkLabel}</span></a>`
+      : `<a href="${customLinkValue}" style="font-family: Helvetica, Arial, sans-serif !important; margin-left: 8px; font-size: ${config.bodyFontSize}; color: ${config.linkColor} !important; text-decoration: none !important; mso-color-alt: ${config.linkColor}; mso-style-textfill-fill-color: ${config.linkColor}; mso-style-textfill-fill-alpha: 100%;"><span style="color: ${config.linkColor} !important; font-family: Helvetica, Arial, sans-serif !important; mso-font-alt: 'Helvetica';">${customLinkLabel}</span></a>`;
     html = html.replace(/%%CustomLink%%/g, customLinkHTML);
   } else {
     // Remove custom link placeholder if not provided

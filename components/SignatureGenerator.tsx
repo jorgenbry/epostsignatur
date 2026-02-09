@@ -48,7 +48,7 @@ export function SignatureGenerator({
       phone: placeholders.phone ?? "+47 123 45 678",
       department: config.showDepartment ? placeholders.department ?? "" : "",
       linkedin: config.showLinkedin ? placeholders.linkedin ?? "" : "",
-      customLink: config.customLinkLabel ? placeholders.customLink ?? "" : "",
+      customLink: 'customLinkLabel' in config && config.customLinkLabel ? placeholders.customLink ?? "" : "",
     }),
     [
       placeholders.name,
@@ -58,9 +58,7 @@ export function SignatureGenerator({
       placeholders.department,
       placeholders.linkedin,
       placeholders.customLink,
-      config.showDepartment,
-      config.showLinkedin,
-      config.customLinkLabel,
+      config,
     ]
   );
 
@@ -326,7 +324,7 @@ export function SignatureGenerator({
               </div>
             )}
 
-            {config.customLinkLabel && (
+            {'customLinkLabel' in config && config.customLinkLabel && (
               <div>
                 <label className={styles.label} htmlFor="custom-link-input">
                   {config.customLinkLabel}
