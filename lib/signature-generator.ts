@@ -150,7 +150,7 @@ const CLIENT_CONFIG = {
     linkColor: '#000000',
     nameFontSize: '16px',
     bodyFontSize: '14px',
-    showDepartment: true,
+    showDepartment: false,
     departmentOptions: [],
     showLinkedin: false,
   },
