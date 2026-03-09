@@ -40,7 +40,7 @@ export const nektarHappyEndingTemplate = `<!DOCTYPE html>
                     &nbsp;&nbsp;&nbsp;
                     <a href="https://www.happyending.no" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">happyending.no</span></a>
                     &nbsp;&nbsp;&nbsp;
-                    <a href="#" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">@happyending</span></a>
+                    <a href="https://www.instagram.com/happyendingoslo" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">@happyending</span></a>
                 </span>
             </td>
         </tr>
