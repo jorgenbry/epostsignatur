@@ -13,6 +13,12 @@ import {
   gjessingDisclaimerTemplate,
   gjessingDisclaimerTemplateMeta,
 } from '@/templates/gjessing-disclaimer-template';
+import { nektarTemplate, nektarTemplateMeta } from '@/templates/nektar-template';
+import {
+  nektarHappyEndingTemplate,
+  nektarHappyEndingTemplateMeta,
+} from '@/templates/nektar-happy-ending-template';
+import { nektarImportTemplate, nektarImportTemplateMeta } from '@/templates/nektar-import-template';
 
 type DepartmentOption = {
   label: string;
@@ -135,6 +141,23 @@ const CLIENT_CONFIG = {
     companyLinkedinUrl: 'https://www.linkedin.com/company/gjessing/',
     customLinkLabel: 'IMDb',
   },
+  nektar: {
+    logoUrl: 'https://signatur.smuss.studio/logo/nektar-logo.png',
+    logoAlt: 'Logo for Nektar',
+    logoWidth: 280,
+    logoHeight: 40,
+    textColor: '#000000',
+    linkColor: '#000000',
+    nameFontSize: '16px',
+    bodyFontSize: '14px',
+    showDepartment: true,
+    departmentOptions: [
+      { label: 'Nektar', value: 'Nektar' },
+      { label: 'Happy Ending', value: 'Happy Ending' },
+      { label: 'Nektar Import', value: 'Nektar Import' },
+    ],
+    showLinkedin: false,
+  },
   // Add more clients here as needed
 } satisfies Record<string, ClientConfig>;
 
@@ -148,6 +171,11 @@ const CLIENT_TEMPLATES: Record<keyof typeof CLIENT_CONFIG, ClientTemplate[]> = {
   gjessing: [
     { ...gjessingTemplateMeta, html: gjessingTemplate },
     { ...gjessingDisclaimerTemplateMeta, html: gjessingDisclaimerTemplate },
+  ],
+  nektar: [
+    { ...nektarTemplateMeta, html: nektarTemplate },
+    { ...nektarHappyEndingTemplateMeta, html: nektarHappyEndingTemplate },
+    { ...nektarImportTemplateMeta, html: nektarImportTemplate },
   ],
 };
 
