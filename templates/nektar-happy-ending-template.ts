@@ -23,7 +23,7 @@ export const nektarHappyEndingTemplate = `<!DOCTYPE html>
             </td>
         </tr>
         <tr>
-            <td style="padding: 16px 0 32px 0; border: none;">
+            <td style="padding: 12px 0 32px 0; border: none;">
                 <img src="https://signatur.smuss.studio/logo/happyending-logo.png" 
                      alt="Happy Ending logo" 
                      width="{{LOGO_WIDTH}}" 
