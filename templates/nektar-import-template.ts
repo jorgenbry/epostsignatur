@@ -23,11 +23,11 @@ export const nektarImportTemplate = `<!DOCTYPE html>
             </td>
         </tr>
         <tr>
-            <td style="padding: 16px 0 24px 0; border: none;">
+            <td style="padding: 16px 0 32px 0; border: none;">
                 <img src="https://signatur.smuss.studio/logo/nektarimport-logo.png" 
                      alt="Nektar Import logo" 
-                     width="450px" 
-                     height="197px" 
+                     width="{{LOGO_WIDTH}}" 
+                     height="{{LOGO_HEIGHT}}" 
                      border="0"
                      role="presentation"
                      style="display: block; border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: {{LOGO_WIDTH}}px; width: {{LOGO_WIDTH}}px; height: auto;">
@@ -37,9 +37,7 @@ export const nektarImportTemplate = `<!DOCTYPE html>
             <td style="padding: 0; border: none;">
                 <span>
                     <a href="tel:%%PhoneNumber%%" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">%%PhoneNumber%%</span></a>
-                    &nbsp;&nbsp;·&nbsp;&nbsp;
-                    <a href="#" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">nektarimport.no</span></a>
-                    &nbsp;&nbsp;·&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="#" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">@nektarimport</span></a>
                 </span>
             </td>

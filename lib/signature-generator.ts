@@ -144,8 +144,8 @@ const CLIENT_CONFIG = {
   nektar: {
     logoUrl: 'https://signatur.smuss.studio/logo/nektar-logo.png',
     logoAlt: 'Logo for Nektar',
-    logoWidth: 280,
-    logoHeight: 40,
+    logoWidth: 230,
+    logoHeight: 100,
     textColor: '#000000',
     linkColor: '#000000',
     nameFontSize: '16px',

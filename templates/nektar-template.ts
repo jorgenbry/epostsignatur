@@ -20,7 +20,7 @@ export const nektarTemplate = `<!DOCTYPE html>
             </td>
         </tr>
         <tr>
-            <td style="padding: 16px 0 24px 0; border: none;">
+            <td style="padding: 16px 0 32px 0; border: none;">
                 <img src="{{LOGO_URL}}" 
                      alt="{{LOGO_ALT}}" 
                      width="{{LOGO_WIDTH}}" 
