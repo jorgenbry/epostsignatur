@@ -37,9 +37,9 @@ export const nektarHappyEndingTemplate = `<!DOCTYPE html>
             <td style="padding: 0; border: none;">
                 <span>
                     <a href="tel:%%PhoneNumber%%" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">%%PhoneNumber%%</span></a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">happyending.no</span></a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="https://www.happyending.no" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">happyending.no</span></a>
+                    &nbsp;&nbsp;&nbsp;
                     <a href="#" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">@happyending</span></a>
                 </span>
             </td>

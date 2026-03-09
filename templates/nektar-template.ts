@@ -34,9 +34,9 @@ export const nektarTemplate = `<!DOCTYPE html>
             <td style="padding: 0; border: none;">
                 <span>
                     <a href="tel:%%PhoneNumber%%" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">%%PhoneNumber%%</span></a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;
                     <a href="https://nektarvinbar.no" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">nektarvinbar.no</span></a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;
                     <a href="https://www.instagram.com/nektarvinbar" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">@nektarvinbar</span></a>
                 </span>
             </td>

@@ -37,8 +37,8 @@ export const nektarImportTemplate = `<!DOCTYPE html>
             <td style="padding: 0; border: none;">
                 <span>
                     <a href="tel:%%PhoneNumber%%" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">%%PhoneNumber%%</span></a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a href="#" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">@nektarimport</span></a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="https://www.instagram.com/nektarimport" style="color: {{LINK_COLOR}}; text-decoration: none;"><span style="color: {{LINK_COLOR}};">@nektarimport</span></a>
                 </span>
             </td>
         </tr>
