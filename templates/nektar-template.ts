@@ -1,4 +1,4 @@
-export const nektarTemplateMeta = { id: 'nektar-default', title: 'Standard' } as const;
+export const nektarTemplateMeta = { id: 'nektar-default', title: 'Nektar' } as const;
 
 export const nektarTemplate = `<!DOCTYPE html>
 <html lang="nb">
