@@ -151,11 +151,7 @@ const CLIENT_CONFIG = {
     nameFontSize: '16px',
     bodyFontSize: '14px',
     showDepartment: true,
-    departmentOptions: [
-      { label: 'Nektar', value: 'Nektar' },
-      { label: 'Happy Ending', value: 'Happy Ending' },
-      { label: 'Nektar Import', value: 'Nektar Import' },
-    ],
+    departmentOptions: [],
     showLinkedin: false,
   },
   // Add more clients here as needed
