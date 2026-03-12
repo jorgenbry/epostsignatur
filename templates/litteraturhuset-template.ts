@@ -48,9 +48,75 @@ export const litteraturhusetTemplate = `<!DOCTYPE html>
         <tr>
             <td style="padding: 16px 0 0 0; border: none; color: {{LINK_COLOR}} !important;">
                 <div style="margin: 0; padding: 4px 0 0 0;">
-                    <a href="https://www.litteraturhuset.no?utm_source=email-signature" color="{{LINK_COLOR}}" style="color:{{LINK_COLOR}} !important;-webkit-text-fill-color:{{LINK_COLOR}} !important;text-decoration:none !important;text-decoration-color:{{LINK_COLOR}} !important;border-style:solid;border-width:1px;border-color:{{LINK_COLOR}};border-radius:6px;padding-right:10px;padding-left:10px;padding-bottom:5px;padding-top:5px;display:inline-block;margin-right:4px;font-size:{{BODY_FONT_SIZE}};line-height:1.4em;mso-color-alt:{{LINK_COLOR}};-webkit-tap-highlight-color:{{LINK_COLOR}}" target="_blank"><span style="color:{{LINK_COLOR}} !important;-webkit-text-fill-color:{{LINK_COLOR}} !important;text-decoration:none !important;text-decoration-color:{{LINK_COLOR}} !important;">Litteraturhuset.no</span></a>
-                    <a href="https://www.litteraturhuset.no/nb/nyhetsbrev?utm_source=email-signature" color="{{LINK_COLOR}}" style="color:{{LINK_COLOR}} !important;-webkit-text-fill-color:{{LINK_COLOR}} !important;text-decoration:none !important;text-decoration-color:{{LINK_COLOR}} !important;border-style:solid;border-width:1px;border-color:{{LINK_COLOR}};border-radius:6px;padding-right:10px;padding-left:10px;padding-bottom:5px;padding-top:5px;display:inline-block;margin-right:4px;font-size:{{BODY_FONT_SIZE}};line-height:1.4em;mso-color-alt:{{LINK_COLOR}};-webkit-tap-highlight-color:{{LINK_COLOR}}" target="_blank"><span style="color:{{LINK_COLOR}} !important;-webkit-text-fill-color:{{LINK_COLOR}} !important;text-decoration:none !important;text-decoration-color:{{LINK_COLOR}} !important;">Nyhetsbrev</span></a>
-                    <a href="https://www.litteraturhuset.no/nb/podkaster?utm_source=email-signature" color="{{LINK_COLOR}}" style="color:{{LINK_COLOR}} !important;-webkit-text-fill-color:{{LINK_COLOR}} !important;text-decoration:none !important;text-decoration-color:{{LINK_COLOR}} !important;border-style:solid;border-width:1px;border-color:{{LINK_COLOR}};border-radius:6px;padding-right:10px;padding-left:10px;padding-bottom:5px;padding-top:5px;display:inline-block;font-size:{{BODY_FONT_SIZE}};line-height:1.4em;mso-color-alt:{{LINK_COLOR}};-webkit-tap-highlight-color:{{LINK_COLOR}}" target="_blank"><span style="color:{{LINK_COLOR}} !important;-webkit-text-fill-color:{{LINK_COLOR}} !important;text-decoration:none !important;text-decoration-color:{{LINK_COLOR}} !important;">Podkaster</span></a>
+                    <a href="https://www.litteraturhuset.no?utm_source=email-signature"
+                       target="_blank"
+                       color="{{LINK_COLOR}}"
+                       style="text-decoration:none; color:{{LINK_COLOR}};">
+                      <!--[if mso]>
+                      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
+                                   xmlns:w="urn:schemas-microsoft-com:office:word"
+                                   href="https://www.litteraturhuset.no?utm_source=email-signature"
+                                   style="height:32px;v-text-anchor:middle;width:170px;"
+                                   arcsize="30%"
+                                   strokecolor="{{LINK_COLOR}}"
+                                   fillcolor="#FFFFFF">
+                        <w:anchorlock/>
+                        <center style="color:{{LINK_COLOR}};font-family:Helvetica, Arial, sans-serif;font-size:{{BODY_FONT_SIZE}};">
+                      <![endif]-->
+                      <span style="display:inline-block;background-color:#FFFFFF;border:1px solid {{LINK_COLOR}};border-radius:6px;padding:5px 10px;color:{{LINK_COLOR}} !important;-webkit-text-fill-color:{{LINK_COLOR}} !important;font-family:Helvetica, Arial, sans-serif;font-size:{{BODY_FONT_SIZE}};text-decoration:none !important;text-decoration-color:{{LINK_COLOR}} !important;line-height:1.4em;">
+                        Litteraturhuset.no
+                      </span>
+                      <!--[if mso]>
+                        </center>
+                      </v:roundrect>
+                      <![endif]-->
+                    </a>
+                    <a href="https://www.litteraturhuset.no/nb/nyhetsbrev?utm_source=email-signature"
+                       target="_blank"
+                       color="{{LINK_COLOR}}"
+                       style="text-decoration:none; color:{{LINK_COLOR}}; margin-left:4px;">
+                      <!--[if mso]>
+                      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
+                                   xmlns:w="urn:schemas-microsoft-com:office:word"
+                                   href="https://www.litteraturhuset.no/nb/nyhetsbrev?utm_source=email-signature"
+                                   style="height:32px;v-text-anchor:middle;width:120px;"
+                                   arcsize="30%"
+                                   strokecolor="{{LINK_COLOR}}"
+                                   fillcolor="#FFFFFF">
+                        <w:anchorlock/>
+                        <center style="color:{{LINK_COLOR}};font-family:Helvetica, Arial, sans-serif;font-size:{{BODY_FONT_SIZE}};">
+                      <![endif]-->
+                      <span style="display:inline-block;background-color:#FFFFFF;border:1px solid {{LINK_COLOR}};border-radius:6px;padding:5px 10px;color:{{LINK_COLOR}} !important;-webkit-text-fill-color:{{LINK_COLOR}} !important;font-family:Helvetica, Arial, sans-serif;font-size:{{BODY_FONT_SIZE}};text-decoration:none !important;text-decoration-color:{{LINK_COLOR}} !important;line-height:1.4em;">
+                        Nyhetsbrev
+                      </span>
+                      <!--[if mso]>
+                        </center>
+                      </v:roundrect>
+                      <![endif]-->
+                    </a>
+                    <a href="https://www.litteraturhuset.no/nb/podkaster?utm_source=email-signature"
+                       target="_blank"
+                       color="{{LINK_COLOR}}"
+                       style="text-decoration:none; color:{{LINK_COLOR}}; margin-left:4px;">
+                      <!--[if mso]>
+                      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
+                                   xmlns:w="urn:schemas-microsoft-com:office:word"
+                                   href="https://www.litteraturhuset.no/nb/podkaster?utm_source=email-signature"
+                                   style="height:32px;v-text-anchor:middle;width:130px;"
+                                   arcsize="30%"
+                                   strokecolor="{{LINK_COLOR}}"
+                                   fillcolor="#FFFFFF">
+                        <w:anchorlock/>
+                        <center style="color:{{LINK_COLOR}};font-family:Helvetica, Arial, sans-serif;font-size:{{BODY_FONT_SIZE}};">
+                      <![endif]-->
+                      <span style="display:inline-block;background-color:#FFFFFF;border:1px solid {{LINK_COLOR}};border-radius:6px;padding:5px 10px;color:{{LINK_COLOR}} !important;-webkit-text-fill-color:{{LINK_COLOR}} !important;font-family:Helvetica, Arial, sans-serif;font-size:{{BODY_FONT_SIZE}};text-decoration:none !important;text-decoration-color:{{LINK_COLOR}} !important;line-height:1.4em;">
+                        Podkaster
+                      </span>
+                      <!--[if mso]>
+                        </center>
+                      </v:roundrect>
+                      <![endif]-->
+                    </a>
                 </div>
             </td>
         </tr>
