@@ -39,7 +39,8 @@ export const gjessingDisclaimerTemplate = `<!DOCTYPE html>
                      width="{{LOGO_WIDTH}}" 
                      height="{{LOGO_HEIGHT}}" 
                      border="0"
-                     style="display: block; border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: {{LOGO_WIDTH}}px; width: {{LOGO_WIDTH}}px;">
+                     role="presentation"
+                     style="display: block; border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: {{LOGO_WIDTH}}px; width: {{LOGO_WIDTH}}px; height: {{LOGO_HEIGHT}}px;">
             </td>
         </tr>
         <tr>
