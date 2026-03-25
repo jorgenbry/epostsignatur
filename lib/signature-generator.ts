@@ -88,7 +88,7 @@ const CLIENT_CONFIG = {
     textColor: '#40263E',
     linkColor: '#550029',
     nameFontSize: '15px',
-    bodyFontSize: '14px',
+    bodyFontSize: '15px',
     showDepartment: true,
     departmentOptions: [
       { label: 'Ikke vis avdeling', value: '' },
