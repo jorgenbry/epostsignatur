@@ -26,11 +26,11 @@ export const nektarImportTemplate = `<!DOCTYPE html>
             <td style="padding: 16px 0 32px 0; border: none;">
                 <img src="https://signatur.smuss.studio/logo/nektarimport-logo-2.png" 
                      alt="Nektar Import logo" 
-                     width="200" 
-                     height="136" 
+                     width="190" 
+                     height="129" 
                      border="0"
                      role="presentation"
-                     style="display: block; border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 200px; width: 200px; height: auto;">
+                     style="display: block; border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 190px; width: 190px; height: auto;">
             </td>
         </tr>
         <tr>
