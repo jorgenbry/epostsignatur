@@ -24,13 +24,13 @@ export const nektarImportTemplate = `<!DOCTYPE html>
         </tr>
         <tr>
             <td style="padding: 16px 0 32px 0; border: none;">
-                <img src="https://signatur.smuss.studio/logo/nektarimport-logo.png" 
+                <img src="https://signatur.smuss.studio/logo/nektarimport-logo-2.png" 
                      alt="Nektar Import logo" 
-                     width="{{LOGO_WIDTH}}" 
-                     height="{{LOGO_HEIGHT}}" 
+                     width="200" 
+                     height="136" 
                      border="0"
                      role="presentation"
-                     style="display: block; border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: {{LOGO_WIDTH}}px; width: {{LOGO_WIDTH}}px; height: auto;">
+                     style="display: block; border: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; max-width: 200px; width: 200px; height: auto;">
             </td>
         </tr>
         <tr>
